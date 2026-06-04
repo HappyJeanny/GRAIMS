@@ -151,7 +151,7 @@ body {
   max-width: 960px; margin: 0 auto;
   position: relative; z-index: 1;
   display: grid;
-  grid-template-columns: 1fr 220px;
+  grid-template-columns: 1fr;
   gap: 48px;
   align-items: center;
 }
@@ -404,8 +404,10 @@ footer a:hover { color: var(--teal); }
   .step:nth-child(2)::after { display: none; }
 }
 @media (max-width: 600px) {
-  .nav { padding: 0 1.2rem; }
+  .nav { padding: 0 1rem; gap: 8px; }
   .nav-brand-sub { display: none; }
+  .nav-cta { font-size: .75rem; padding: 8px 12px; white-space: nowrap; }
+  .theme-toggle { width: 34px; height: 34px; font-size: .95rem; flex-shrink: 0; }
   .hero, .section, .cta-section { padding-left: 1.2rem; padding-right: 1.2rem; }
   .hero { padding-top: 52px; padding-bottom: 64px; }
   .hero-inner { grid-template-columns: 1fr; }
@@ -473,11 +475,6 @@ footer a:hover { color: var(--teal); }
         <a class="btn-ghost" href="#loesung">Was wir liefern ↓</a>
       </div>
     </div>
-    <img class="hero-logo-right"
-         src="assets/logo.png"
-         alt="GRAIMS Logo"
-         width="220" height="220"
-         onerror="this.style.display='none'">
   </div>
 </section>
 
