@@ -8,8 +8,19 @@
 <meta name="description" content="GRAIMS macht Ihre Bewerber-KI EU AI Act-konform. Risikoklassifizierung, Governance-Dokumentation und Schulungen – mit 25 Jahren Erfahrung in HR, IT und Mitbestimmung.">
 <meta property="og:title" content="GRAIMS – KI-Governance & HR-Compliance">
 <meta property="og:description" content="Recruiting-KI ist Hochrisiko nach EU AI Act. Wir bringen Ihre HR-Prozesse in Compliance – mit klaren Deliverables und Festpreispaketen.">
+<meta property="og:url" content="https://aimshub.co">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="de_DE">
+<link rel="canonical" href="https://aimshub.co">
+<!-- Favicons -->
+<link rel="icon" type="image/png" href="assets/favicons/favicon-96x96.png" sizes="96x96">
+<link rel="shortcut icon" href="assets/favicons/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicons/apple-touch-icon.png">
+<link rel="manifest" href="assets/favicons/site.webmanifest">
+<meta name="theme-color" content="#0A2044">
+
+<!-- Calendly -->
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=optional" rel="stylesheet">
@@ -412,7 +423,7 @@ footer a:hover { color: var(--teal); }
   </a>
   <div class="nav-right">
     <button class="theme-toggle" id="theme-toggle" aria-label="Farbschema wechseln" title="Hell/Dunkel wechseln">🌙</button>
-    <a class="nav-cta" href="#kontakt">Termin vereinbaren</a>
+    <button class="nav-cta" onclick="Calendly.initPopupWidget({url:'https://calendly.com/isabell-mader/erstgesprach'});return false;">Termin vereinbaren</button>
   </div>
 </nav>
 
@@ -447,7 +458,7 @@ footer a:hover { color: var(--teal); }
       </div>
     </div>
     <div class="cta-group">
-      <a class="btn-primary" href="#kontakt">Kostenloses Erstgespräch</a>
+      <button class="btn-primary" onclick="Calendly.initPopupWidget({url:'https://calendly.com/isabell-mader/erstgesprach'});return false;">Kostenloses Erstgespräch</button>
       <a class="btn-ghost" href="#loesung">Was wir liefern ↓</a>
     </div>
   </div>
@@ -604,9 +615,9 @@ footer a:hover { color: var(--teal); }
 <section class="cta-section" id="kontakt">
   <h2>Bereit für 15 Minuten Klarheit?</h2>
   <p>Wir sagen Ihnen ehrlich, ob und wie wir helfen können. Kein Verkaufsgespräch – sondern eine erste echte Einschätzung.</p>
-  <a class="btn-primary" href="https://calendly.com/graims" target="_blank" rel="noopener noreferrer">
+  <button class="btn-primary" onclick="Calendly.initPopupWidget({url:'https://calendly.com/isabell-mader/erstgesprach'});return false;">
     Termin vereinbaren
-  </a>
+  </button>
   <span class="cta-note">Oder schreiben Sie uns: kontakt@graims.de</span>
 </section>
 
@@ -642,5 +653,6 @@ footer a:hover { color: var(--teal); }
   });
 </script>
 
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 </body>
 </html>

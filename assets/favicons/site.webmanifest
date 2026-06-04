@@ -1,0 +1,13 @@
+{
+  "name": "GRAIMS – KI-Governance & HR-Compliance",
+  "short_name": "GRAIMS",
+  "description": "HR Governance Managed for You",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A2044",
+  "theme_color": "#0A2044",
+  "icons": [
+    { "src": "/assets/favicons/icon-192x192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/assets/favicons/icon-512x512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
