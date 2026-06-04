@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="light">
+<head>
+<script>!function(){var s=localStorage.getItem("theme"),d=window.matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light";document.documentElement.setAttribute("data-theme",s||d)}()</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GRAIMS – KI-Governance & HR-Compliance aus einer Hand</title>
+<meta name="description" content="GRAIMS macht Ihre Bewerber-KI EU AI Act-konform. Risikoklassifizierung, Governance-Dokumentation und Schulungen – mit 25 Jahren Erfahrung in HR, IT und Mitbestimmung.">
+<meta property="og:title" content="GRAIMS – KI-Governance & HR-Compliance">
+<meta property="og:description" content="Recruiting-KI ist Hochrisiko nach EU AI Act. Wir bringen Ihre HR-Prozesse in Compliance – mit klaren Deliverables und Festpreispaketen.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_DE">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=optional" rel="stylesheet">
+
+<style>
+/* ── DESIGN TOKENS ─────────────────────────────────── */
+:root {
+  --navy:        #0A2044;
+  --navy-deep:   #060f1e;
+  --navy-mid:    #0d2d5e;
+  --teal:        #00B4C8;
+  --teal-light:  #1cc8dc;
+  --teal-dark:   #0094a8;
+  --gold:        #C4A84A;
+  --gold-brand:  #9B823C;
+  --gray:        #707880;
+  --border:      #e2e8f0;
+
+  /* Light mode surfaces */
+  --bg:          #F8FAFC;
+  --bg-soft:     #EEF2F7;
+  --surface:     #ffffff;
+  --text:        #0A2044;
+  --text-muted:  #707880;
+
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   16px;
+  --radius-xl:   24px;
+  --radius-full: 9999px;
+
+  --shadow-sm:   0 1px 3px rgba(0,0,0,.08);
+  --shadow-md:   0 4px 16px rgba(0,0,0,.12);
+  --shadow-lg:   0 8px 32px rgba(0,0,0,.18);
+
+  --trans:       0.2s ease;
+  --font:        'Montserrat', 'Inter', system-ui, sans-serif;
+}
+
+/* ── DARK MODE TOKENS ──────────────────────────────── */
+[data-theme="dark"] {
+  --bg:          #0d1421;
+  --bg-soft:     #111827;
+  --surface:     #1a2236;
+  --text:        #e8edf5;
+  --text-muted:  #9ca3af;
+  --border:      #2d3748;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  transition: background var(--trans), color var(--trans);
+}
+
+/* ── NAV ───────────────────────────────────────────── */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(10,32,68,.97);
+  backdrop-filter: blur(10px);
+  height: 68px;
+  padding: 0 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid rgba(0,180,200,.25);
+}
+.nav-brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+.nav-brand img { height: 48px; width: auto; }
+.nav-brand-text { line-height: 1.15; }
+.nav-brand-name {
+  font-size: 1.25rem; font-weight: 800; color: white;
+  letter-spacing: .07em; display: block;
+}
+.nav-brand-sub {
+  font-size: .58rem; font-weight: 700; color: var(--teal);
+  letter-spacing: .14em; display: block;
+}
+.nav-right { display: flex; align-items: center; gap: 12px; }
+
+/* Theme Toggle */
+.theme-toggle {
+  width: 40px; height: 40px;
+  background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+  border-radius: var(--radius-md); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; transition: background var(--trans);
+  flex-shrink: 0;
+}
+.theme-toggle:hover { background: rgba(255,255,255,.18); }
+
+.nav-cta {
+  background: var(--teal);
+  color: white; padding: 10px 24px; border-radius: var(--radius-md);
+  font-weight: 700; font-size: .85rem; text-decoration: none;
+  white-space: nowrap;
+  transition: background var(--trans), transform var(--trans);
+}
+.nav-cta:hover { background: var(--teal-dark); transform: translateY(-1px); }
+
+/* ── HERO ──────────────────────────────────────────── */
+#hero { scroll-margin-top: 68px; }
+.hero {
+  background: var(--navy);
+  color: white;
+  padding: 72px 2rem 96px;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: -180px; right: -180px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(0,180,200,.13) 0%, transparent 68%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute; bottom: -120px; left: -80px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(155,130,60,.09) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-inner {
+  max-width: 860px; margin: 0 auto;
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; align-items: flex-start;
+}
+
+/* Hero-Logo */
+.hero-logo {
+  display: block;
+  height: 140px; width: auto;
+  max-width: 480px;
+  margin-bottom: 36px;
+  filter: drop-shadow(0 6px 24px rgba(0,180,200,.35));
+}
+
+.badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(0,180,200,.14); border: 1px solid rgba(0,180,200,.4);
+  color: var(--teal); padding: 6px 18px; border-radius: var(--radius-full);
+  font-size: .75rem; font-weight: 700; letter-spacing: .09em; margin-bottom: 24px;
+}
+
+.hero h1 {
+  font-size: clamp(2.2rem, 5.5vw, 3.5rem);
+  font-weight: 800; line-height: 1.12; margin-bottom: 24px;
+  letter-spacing: -.025em;
+}
+.hero h1 .teal { color: var(--teal); }
+.hero h1 .gold { color: var(--gold); }
+
+.hero-sub {
+  font-size: 1.1rem; color: rgba(255,255,255,.82);
+  max-width: 620px; margin-bottom: 36px; line-height: 1.7;
+}
+
+.trust-list { display: flex; flex-direction: column; gap: 11px; margin-bottom: 44px; }
+.trust-item {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: .92rem; color: rgba(255,255,255,.88); font-weight: 600;
+}
+.trust-icon {
+  width: 22px; height: 22px; min-width: 22px; margin-top: 1px;
+  background: var(--teal); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .65rem; font-weight: 900;
+}
+
+.cta-group { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; }
+
+.btn-primary {
+  background: linear-gradient(180deg, var(--teal-light) 0%, var(--teal) 100%);
+  color: white; padding: 16px 36px; border-radius: var(--radius-md);
+  font-weight: 700; font-size: 1rem; text-decoration: none; display: inline-block;
+  box-shadow: 0 2px 4px rgba(0,61,71,.15), 0 8px 24px rgba(0,180,200,.28);
+  transition: transform var(--trans), box-shadow var(--trans), background var(--trans);
+}
+.btn-primary:hover {
+  background: linear-gradient(180deg, var(--teal) 0%, var(--teal-dark) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,61,71,.2), 0 14px 32px rgba(0,180,200,.38);
+}
+.btn-primary:active { transform: translateY(1px); }
+
+.btn-ghost {
+  color: rgba(255,255,255,.72); font-size: .9rem; font-weight: 600;
+  text-decoration: none; transition: color var(--trans);
+}
+.btn-ghost:hover { color: white; }
+
+/* ── SHARED SECTION ────────────────────────────────── */
+.section { padding: 80px 2rem; }
+.section-inner { max-width: 1020px; margin: 0 auto; }
+
+.section-tag {
+  display: inline-block; font-size: .7rem; font-weight: 700;
+  letter-spacing: .13em; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 10px;
+}
+.section-title {
+  font-size: clamp(1.65rem, 3.6vw, 2.5rem);
+  font-weight: 800; line-height: 1.18; color: var(--text);
+  margin-bottom: 14px; letter-spacing: -.02em;
+  transition: color var(--trans);
+}
+.section-sub {
+  font-size: 1.05rem; color: var(--text-muted); line-height: 1.7;
+  max-width: 640px; margin-bottom: 48px;
+  transition: color var(--trans);
+}
+
+/* Scroll offset for sticky nav */
+#problem, #loesung, #warum, #vorgehen, #kontakt { scroll-margin-top: 68px; }
+
+/* ── PROBLEM ───────────────────────────────────────── */
+.problem { background: var(--bg-soft); transition: background var(--trans); }
+
+.problem-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px; margin-bottom: 32px;
+}
+.problem-card {
+  background: var(--surface); border-radius: var(--radius-lg);
+  padding: 26px 22px; border-left: 4px solid var(--teal);
+  box-shadow: var(--shadow-sm);
+  transition: background var(--trans);
+}
+.problem-card-title { font-size: .95rem; font-weight: 700; color: var(--text); margin-bottom: 8px; transition: color var(--trans); }
+.problem-card-text  { font-size: .87rem; color: var(--text-muted); line-height: 1.6; transition: color var(--trans); }
+
+.urgency-banner {
+  background: var(--navy);
+  border-radius: var(--radius-xl); padding: 36px 40px;
+  display: flex; flex-wrap: wrap; align-items: center;
+  justify-content: space-between; gap: 24px;
+}
+.urgency-text {
+  font-size: 1.08rem; font-weight: 700; color: white;
+  line-height: 1.5; max-width: 560px;
+}
+.urgency-text em { color: var(--teal); font-style: normal; }
+.urgency-text small {
+  display: block; font-size: .85rem; font-weight: 400;
+  color: rgba(255,255,255,.65); margin-top: 8px;
+}
+.urgency-date { text-align: center; min-width: 130px; }
+.urgency-date .date { font-size: 2rem; font-weight: 800; color: var(--gold); line-height: 1.1; }
+.urgency-date .date-label {
+  font-size: .72rem; color: rgba(255,255,255,.58); font-weight: 600;
+  margin-top: 6px; letter-spacing: .06em; text-transform: uppercase;
+}
+
+/* ── SOLUTION ──────────────────────────────────────── */
+.solution { background: var(--surface); transition: background var(--trans); }
+
+.solution-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 18px; margin-bottom: 36px;
+}
+.solution-card {
+  background: var(--bg); border-radius: var(--radius-lg);
+  padding: 26px 20px; border: 1.5px solid var(--border);
+  text-align: center;
+  transition: transform var(--trans), box-shadow var(--trans), border-color var(--trans), background var(--trans);
+}
+.solution-card:hover {
+  transform: translateY(-4px); box-shadow: var(--shadow-md);
+  border-color: rgba(0,180,200,.35);
+}
+.solution-card-icon {
+  width: 48px; height: 48px; background: rgba(0,180,200,.12);
+  border-radius: 12px; display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 14px; font-size: 1.35rem;
+}
+.solution-card-title { font-size: .92rem; font-weight: 700; color: var(--text); margin-bottom: 8px; transition: color var(--trans); }
+.solution-card-text  { font-size: .83rem; color: var(--text-muted); line-height: 1.55; transition: color var(--trans); }
+
+.deliverables {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+  border-radius: var(--radius-xl); padding: 40px 44px; color: white;
+}
+.deliverables h3 {
+  font-size: .78rem; font-weight: 700; letter-spacing: .14em;
+  color: var(--teal); text-transform: uppercase; margin-bottom: 24px;
+}
+.deliverables-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px; list-style: none;
+}
+.deliverables-grid li {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: .88rem; line-height: 1.5; color: rgba(255,255,255,.9);
+}
+.deliverables-grid li::before { content: '→'; color: var(--teal); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+/* ── WHY ───────────────────────────────────────────── */
+.why { background: var(--bg); transition: background var(--trans); }
+
+.why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+.why-card {
+  padding: 36px 28px; text-align: center;
+  border-right: 1px solid var(--border); transition: border-color var(--trans);
+}
+.why-card:last-child { border-right: none; }
+
+.why-number { font-size: 3.4rem; font-weight: 800; color: var(--teal); line-height: 1; margin-bottom: 4px; }
+.why-unit   { font-size: 1.3rem; }
+.why-label  { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 12px; transition: color var(--trans); }
+.why-text   { font-size: .88rem; color: var(--text-muted); line-height: 1.65; transition: color var(--trans); }
+
+/* ── APPROACH ──────────────────────────────────────── */
+.approach { background: var(--bg-soft); transition: background var(--trans); }
+
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
+.step { padding: 32px 20px; text-align: center; position: relative; }
+.step:not(:last-child)::after {
+  content: '›';
+  position: absolute; right: -10px; top: 42px;
+  color: var(--teal); font-size: 1.8rem; font-weight: 700; line-height: 1;
+}
+.step-num {
+  width: 52px; height: 52px; background: var(--navy); border-radius: 50%;
+  color: white; font-size: 1.15rem; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px;
+  box-shadow: 0 4px 12px rgba(10,32,68,.3);
+}
+[data-theme="dark"] .step-num { box-shadow: 0 4px 12px rgba(0,0,0,.5); }
+.step-title { font-size: .95rem; font-weight: 700; color: var(--text); margin-bottom: 8px; transition: color var(--trans); }
+.step-text  { font-size: .84rem; color: var(--text-muted); line-height: 1.55; transition: color var(--trans); }
+
+/* ── CTA ───────────────────────────────────────────── */
+.cta-section {
+  background: var(--navy); color: white;
+  padding: 88px 2rem; text-align: center;
+}
+.cta-section h2 {
+  font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+  font-weight: 800; margin-bottom: 16px; line-height: 1.15;
+}
+.cta-section p {
+  font-size: 1.08rem; color: rgba(255,255,255,.76);
+  max-width: 500px; margin: 0 auto 36px; line-height: 1.65;
+}
+.cta-note {
+  display: block; margin-top: 18px;
+  font-size: .82rem; color: rgba(255,255,255,.42); font-weight: 600;
+}
+
+/* ── FOOTER ────────────────────────────────────────── */
+footer {
+  background: var(--navy-deep); color: rgba(255,255,255,.42);
+  padding: 28px 2rem; text-align: center; font-size: .8rem;
+}
+footer a {
+  color: rgba(255,255,255,.52); text-decoration: none;
+  margin: 0 12px; transition: color var(--trans);
+}
+footer a:hover { color: var(--teal); }
+
+/* ── MOBILE ────────────────────────────────────────── */
+@media (max-width: 760px) {
+  .why-grid { grid-template-columns: 1fr; }
+  .why-card { border-right: none; border-bottom: 1px solid var(--border); }
+  .why-card:last-child { border-bottom: none; }
+  .steps { grid-template-columns: 1fr 1fr; }
+  .step:nth-child(2)::after { display: none; }
+}
+@media (max-width: 600px) {
+  .nav { padding: 0 1.2rem; }
+  .nav-brand-sub { display: none; }
+  .hero, .section, .cta-section { padding-left: 1.2rem; padding-right: 1.2rem; }
+  .hero { padding-top: 52px; padding-bottom: 64px; }
+  .hero-logo { height: 90px; }
+  .steps { grid-template-columns: 1fr; }
+  .step:not(:last-child)::after { display: none; }
+  .urgency-banner { flex-direction: column; text-align: center; padding: 28px 24px; }
+  .deliverables { padding: 28px 22px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ══ NAV ══════════════════════════════════════════ -->
+<nav class="nav">
+  <a class="nav-brand" href="#">
+    <img src="assets/logo.png" alt="GRAIMS Logo"
+         width="160" height="48" fetchpriority="high"
+         onerror="this.style.display='none'">
+    <div class="nav-brand-text">
+      <span class="nav-brand-name">GRAIMS</span>
+      <span class="nav-brand-sub">HR GOVERNANCE | MANAGED FOR YOU</span>
+    </div>
+  </a>
+  <div class="nav-right">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Farbschema wechseln" title="Hell/Dunkel wechseln">🌙</button>
+    <a class="nav-cta" href="#kontakt">Termin vereinbaren</a>
+  </div>
+</nav>
+
+<main>
+
+<!-- ══ HERO ══════════════════════════════════════════ -->
+<section class="hero" id="hero">
+  <div class="hero-inner">
+    <div class="badge">✦ KI-ready Messe 2026</div>
+    <h1>
+      Bewerber-KI<br>
+      ist <span class="teal">Hochrisiko.</span><br>
+      Wir machen Sie <span class="gold">audit-ready.</span>
+    </h1>
+    <p class="hero-sub">
+      Wer KI in der Bewerberauswahl einsetzt, ist nach EU AI Act Betreiber
+      einer Hochrisiko-KI. GRAIMS liefert Risikoklassifizierung, Dokumentation
+      und Schulungen aus einer Hand – mit Festpreis und klaren Ergebnissen.
+    </p>
+    <div class="trust-list">
+      <div class="trust-item">
+        <div class="trust-icon">✓</div>
+        25 Jahre Erfahrung in Bewerberauswahl, IT-Projekten und mitbestimmungspflichtigen Inhalten
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">✓</div>
+        Spezialisiert auf EU AI Act · KI-Governance · HR-Compliance
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">✓</div>
+        Festpreispakete mit definierten Deliverables – kein Stundensatz-Risiko
+      </div>
+    </div>
+    <div class="cta-group">
+      <a class="btn-primary" href="#kontakt">Kostenloses Erstgespräch</a>
+      <a class="btn-ghost" href="#loesung">Was wir liefern ↓</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROBLEM ════════════════════════════════════════ -->
+<section class="section problem" id="problem">
+  <div class="section-inner">
+    <span class="section-tag">Die Lage</span>
+    <h2 class="section-title">Wer KI im Recruiting einsetzt,<br>ist Betreiber – mit konkreten Pflichten.</h2>
+    <p class="section-sub">Der EU AI Act stuft Systeme zur Bewerberauswahl als Hochrisiko-KI nach Annex III ein. Diese Pflichten treffen Unternehmen direkt – unabhängig davon, wer das System entwickelt hat.</p>
+
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-card-title">Risikoklassifizierung</div>
+        <div class="problem-card-text">Ihr KI-System muss formal eingestuft und dokumentiert sein – bevor es produktiv geht.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-card-title">Betreiberpflichten</div>
+        <div class="problem-card-text">Als Betreiber haften Sie für den rechtmäßigen Einsatz – auch wenn Sie das System nicht gebaut haben.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-card-title">Betriebsrat & Datenschutz</div>
+        <div class="problem-card-text">Mitbestimmung und DSGVO müssen aktiv im KI-Prozess verankert sein, nicht nur auf Papier.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-card-title">Schulungspflicht Art. 4</div>
+        <div class="problem-card-text">Alle, die das System nutzen oder beaufsichtigen, brauchen nachweisbare KI-Kompetenz.</div>
+      </div>
+    </div>
+
+    <div class="urgency-banner">
+      <div class="urgency-text">
+        <em>Ab 2. August 2026</em> gelten die vollen Anforderungen für Hochrisiko-KI nach EU AI Act.
+        <small>Wer jetzt plant, kommt entspannt durch den ersten Audit. Wer wartet, hat den dreifachen Aufwand.</small>
+      </div>
+      <div class="urgency-date">
+        <div class="date">2. Aug<br>2026</div>
+        <div class="date-label">EU AI Act<br>Hochrisiko gilt</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SOLUTION ═══════════════════════════════════════ -->
+<section class="section solution" id="loesung">
+  <div class="section-inner">
+    <span class="section-tag">Unser Leistungspaket</span>
+    <h2 class="section-title">Recruiting-Hochrisiko-Ready.</h2>
+    <p class="section-sub">Ein vollständiges Compliance-Paket für Unternehmen, die KI in der Bewerberauswahl einsetzen oder planen. Von der ersten Einschätzung bis zur Audit-Readiness – alles aus einer Hand.</p>
+
+    <div class="solution-grid">
+      <div class="solution-card">
+        <div class="solution-card-icon">🔍</div>
+        <div class="solution-card-title">KI-VO Quickcheck</div>
+        <div class="solution-card-text">Klarheit in 90 Minuten: Risikoklasse, Pflichten, nächste Schritte.</div>
+      </div>
+      <div class="solution-card">
+        <div class="solution-card-icon">📋</div>
+        <div class="solution-card-title">Risikoklassifizierung</div>
+        <div class="solution-card-text">Formale Einstufung nach Annex III EU AI Act – rechtssicher dokumentiert.</div>
+      </div>
+      <div class="solution-card">
+        <div class="solution-card-icon">📁</div>
+        <div class="solution-card-title">Dokumentationspaket</div>
+        <div class="solution-card-text">Betriebsdokumentation, Policies und Konformitätsunterlagen – prüffähig.</div>
+      </div>
+      <div class="solution-card">
+        <div class="solution-card-icon">🤝</div>
+        <div class="solution-card-title">BR- & DS-Interface</div>
+        <div class="solution-card-text">Mitbestimmung und Datenschutz aktiv gestalten – nicht nur dokumentieren.</div>
+      </div>
+      <div class="solution-card">
+        <div class="solution-card-icon">🎓</div>
+        <div class="solution-card-title">Schulungsnachweise</div>
+        <div class="solution-card-text">Art. 4-konforme KI-Kompetenz für alle Beteiligten – mit Zertifikat.</div>
+      </div>
+    </div>
+
+    <div class="deliverables">
+      <h3>Ihre Deliverables am Ende</h3>
+      <ul class="deliverables-grid">
+        <li>Formale Risikoklassifizierung nach Annex III</li>
+        <li>Vollständiges Betreiber-Dokumentationspaket</li>
+        <li>Betriebsrats- und Datenschutzkonzept</li>
+        <li>Art. 4-Schulungsnachweise für alle Nutzer</li>
+        <li>Audit-Readiness-Check (ISO/IEC 42001-orientiert)</li>
+        <li>Festpreis – kein Stundensatz-Risiko</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WHY ════════════════════════════════════════════ -->
+<section class="section why" id="warum">
+  <div class="section-inner">
+    <span class="section-tag">Warum GRAIMS</span>
+    <h2 class="section-title">HR-Governance + KI-VO-Expertise.<br>Aus einer Hand.</h2>
+    <p class="section-sub">Wir verbinden drei Kompetenzbereiche, die Sie für KI-Compliance im Recruiting wirklich brauchen – keine Theoretiker, sondern Menschen aus der Praxis.</p>
+
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-number">25<span class="why-unit"> J.</span></div>
+        <div class="why-label">Praxiserfahrung</div>
+        <div class="why-text">In Bewerberauswahl, IT-Projekten und mitbestimmungspflichtigen Inhalten. Wir kennen die Fallstricke – und wie man sie vermeidet.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-number">3</div>
+        <div class="why-label">Komplementäre Expertisen</div>
+        <div class="why-text">KI-Governance & Methodik · Didaktik & Qualitätsmanagement · Sales, Change & Datenschutz. Ein Team, eine Lösung.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-number">0</div>
+        <div class="why-label">Stundensatz-Risiko</div>
+        <div class="why-text">Alle Pakete mit Festpreis und Meilensteinzahlungen. Sie wissen vorher genau, was Sie bekommen – und was es kostet.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ APPROACH ═══════════════════════════════════════ -->
+<section class="section approach" id="vorgehen">
+  <div class="section-inner">
+    <span class="section-tag">Unser Vorgehen</span>
+    <h2 class="section-title">Vom Quickcheck zur Audit-Readiness.</h2>
+    <p class="section-sub">Strukturiert, transparent, ergebnisorientiert – angelehnt an ISO/IEC 42001.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-title">Erstgespräch</div>
+        <div class="step-text">Kostenlos. 15 Minuten. Wir geben eine ehrliche erste Einschätzung Ihrer Situation.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-title">KI-VO Quickcheck</div>
+        <div class="step-text">Risikoklasse, Pflichten und konkreter Maßnahmenplan – in 90 Minuten auf den Punkt.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-title">Umsetzung</div>
+        <div class="step-text">Dokumentation, Schulungen, BR/DS-Interface – wir liefern alle Deliverables im Festpreis.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-title">Audit-Ready</div>
+        <div class="step-text">Abschluss-Check. Vollständige Unterlagen. Sie können sich prüfen lassen – jederzeit.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ════════════════════════════════════════════ -->
+<section class="cta-section" id="kontakt">
+  <h2>Bereit für 15 Minuten Klarheit?</h2>
+  <p>Wir sagen Ihnen ehrlich, ob und wie wir helfen können. Kein Verkaufsgespräch – sondern eine erste echte Einschätzung.</p>
+  <a class="btn-primary" href="https://calendly.com/graims" target="_blank" rel="noopener noreferrer">
+    Termin vereinbaren
+  </a>
+  <span class="cta-note">Oder schreiben Sie uns: kontakt@graims.de</span>
+</section>
+
+</main>
+
+<footer>
+  <span>© 2026 GRAIMS</span>
+  <a href="impressum.html">Impressum</a>
+  <a href="datenschutzerklaerung.html">Datenschutz</a>
+</footer>
+
+<script>
+  // ── Dark mode toggle ──────────────────────────────
+  const toggle = document.getElementById('theme-toggle');
+
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    toggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+    toggle.setAttribute('aria-label', theme === 'dark' ? 'Hellmodus aktivieren' : 'Dunkelmodus aktivieren');
+  }
+
+  applyTheme(document.documentElement.getAttribute('data-theme') || 'light');
+
+  toggle.addEventListener('click', () => {
+    const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('theme', next);
+    applyTheme(next);
+  });
+
+  // ── Lazy loading ──────────────────────────────────
+  document.querySelectorAll('img').forEach(img => {
+    if (!img.hasAttribute('loading') && !img.hasAttribute('fetchpriority')) img.loading = 'lazy';
+  });
+</script>
+
+</body>
+</html>
