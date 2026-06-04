@@ -148,9 +148,18 @@ body {
   pointer-events: none;
 }
 .hero-inner {
-  max-width: 860px; margin: 0 auto;
+  max-width: 960px; margin: 0 auto;
   position: relative; z-index: 1;
-  display: flex; flex-direction: column; align-items: flex-start;
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: 48px;
+  align-items: center;
+}
+.hero-content { display: flex; flex-direction: column; align-items: flex-start; }
+.hero-logo-right {
+  width: 220px; height: auto;
+  filter: drop-shadow(0 8px 40px rgba(0,180,200,.35));
+  justify-self: center;
 }
 
 /* Hero-Logo */
@@ -399,7 +408,8 @@ footer a:hover { color: var(--teal); }
   .nav-brand-sub { display: none; }
   .hero, .section, .cta-section { padding-left: 1.2rem; padding-right: 1.2rem; }
   .hero { padding-top: 52px; padding-bottom: 64px; }
-  .hero-logo { height: 90px; }
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-logo-right { display: none; }
   .steps { grid-template-columns: 1fr; }
   .step:not(:last-child)::after { display: none; }
   .urgency-banner { flex-direction: column; text-align: center; padding: 28px 24px; }
@@ -432,35 +442,42 @@ footer a:hover { color: var(--teal); }
 <!-- ══ HERO ══════════════════════════════════════════ -->
 <section class="hero" id="hero">
   <div class="hero-inner">
-    <div class="badge">✦ KI-ready Messe 2026</div>
-    <h1>
-      Bewerber-KI<br>
-      ist <span class="teal">Hochrisiko.</span><br>
-      Wir machen Sie <span class="gold">audit-ready.</span>
-    </h1>
-    <p class="hero-sub">
-      Wer KI in der Bewerberauswahl einsetzt, ist nach EU AI Act Betreiber
-      einer Hochrisiko-KI. GRAIMS liefert Risikoklassifizierung, Dokumentation
-      und Schulungen aus einer Hand – mit Festpreis und klaren Ergebnissen.
-    </p>
-    <div class="trust-list">
-      <div class="trust-item">
-        <div class="trust-icon">✓</div>
-        25 Jahre Erfahrung in Bewerberauswahl, IT-Projekten und mitbestimmungspflichtigen Inhalten
+    <div class="hero-content">
+      <div class="badge">✦ KI-ready Messe 2026</div>
+      <h1>
+        Bewerber-KI<br>
+        ist <span class="teal">Hochrisiko.</span><br>
+        Wir machen Sie <span class="gold">audit-ready.</span>
+      </h1>
+      <p class="hero-sub">
+        Wer KI in der Bewerberauswahl einsetzt, ist nach EU AI Act Betreiber
+        einer Hochrisiko-KI. GRAIMS liefert Risikoklassifizierung, Dokumentation
+        und Schulungen aus einer Hand – mit Festpreis und klaren Ergebnissen.
+      </p>
+      <div class="trust-list">
+        <div class="trust-item">
+          <div class="trust-icon">✓</div>
+          25 Jahre Erfahrung in Bewerberauswahl, IT-Projekten und mitbestimmungspflichtigen Inhalten
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">✓</div>
+          Spezialisiert auf EU AI Act · KI-Governance · HR-Compliance
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">✓</div>
+          Festpreispakete mit definierten Deliverables – kein Stundensatz-Risiko
+        </div>
       </div>
-      <div class="trust-item">
-        <div class="trust-icon">✓</div>
-        Spezialisiert auf EU AI Act · KI-Governance · HR-Compliance
-      </div>
-      <div class="trust-item">
-        <div class="trust-icon">✓</div>
-        Festpreispakete mit definierten Deliverables – kein Stundensatz-Risiko
+      <div class="cta-group">
+        <button class="btn-primary" onclick="Calendly.initPopupWidget({url:'https://calendly.com/isabell-mader/erstgesprach'});return false;">Kostenloses Erstgespräch</button>
+        <a class="btn-ghost" href="#loesung">Was wir liefern ↓</a>
       </div>
     </div>
-    <div class="cta-group">
-      <button class="btn-primary" onclick="Calendly.initPopupWidget({url:'https://calendly.com/isabell-mader/erstgesprach'});return false;">Kostenloses Erstgespräch</button>
-      <a class="btn-ghost" href="#loesung">Was wir liefern ↓</a>
-    </div>
+    <img class="hero-logo-right"
+         src="assets/logo.png"
+         alt="GRAIMS Logo"
+         width="220" height="220"
+         onerror="this.style.display='none'">
   </div>
 </section>
 
