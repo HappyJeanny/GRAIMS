@@ -1,0 +1,8 @@
+/assets/favicons/site.webmanifest
+  Content-Type: application/manifest+json
+
+/assets/favicons/*.png
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/favicons/*.ico
+  Cache-Control: public, max-age=31536000, immutable
