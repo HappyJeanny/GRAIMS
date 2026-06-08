@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="KI-Beauftragter – Datenschutz & KI: Was wirklich gilt">
+    <meta name="author" content="KI Strategie & Co.">
+    <title>KI-Beauftragter: Datenschutz & KI | KI Strategie & Co.</title>
+
+    <link rel="icon" type="image/x-icon" href="../presentation-template/assets/favicons/favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="../presentation-template/assets/favicons/favicon.svg">
+    <link rel="stylesheet" href="../presentation-template/css/styles.css">
+    <link rel="stylesheet" href="../presentation-template/css/presentation.css">
+
+    <style>
+        /* === PRÜFRELEVANZ-TAGS === */
+        .pruef-tag {
+            display: inline-block; padding: 4px 14px; border-radius: 20px;
+            font-size: 0.62em; font-weight: 700; letter-spacing: 0.08em;
+            text-transform: uppercase; vertical-align: middle; flex-shrink: 0;
+        }
+        .tag-pflicht    { background: var(--brand-blue);       color: #fff; }
+        .tag-vertiefung { background: var(--brand-green-dark); color: #fff; }
+        .tag-aktuell    { background: #e07800;                 color: #fff; }
+
+        /* === SLIDE HEADER === */
+        .slide-header {
+            display: flex; align-items: flex-start; justify-content: space-between;
+            gap: 16px; margin-bottom: 0.4em; flex-wrap: wrap;
+        }
+        .slide-header h2 { margin-bottom: 0; flex: 1; }
+
+        /* === LERNZIELE & TAKEAWAYS === */
+        .lernziel-list { list-style: none; padding: 0; margin: 10px 0; counter-reset: lz; }
+        .lernziel-list li {
+            counter-increment: lz; display: flex; align-items: baseline;
+            gap: 12px; padding: 7px 0; border-bottom: 1px solid rgba(0,95,115,0.12);
+            font-size: 0.88em; line-height: 1.45;
+        }
+        .lernziel-list li::before {
+            content: counter(lz); background: var(--brand-blue); color: #fff;
+            width: 22px; height: 22px; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center; font-size: 0.75em;
+            font-weight: 700; flex-shrink: 0;
+        }
+        .takeaway-list { list-style: none; padding: 0; margin: 10px 0; }
+        .takeaway-list li {
+            display: flex; align-items: baseline; gap: 10px;
+            padding: 6px 0; border-bottom: 1px solid rgba(0,95,115,0.1);
+            font-size: 0.85em; line-height: 1.45;
+        }
+        .takeaway-list li::before { content: '✓'; color: var(--brand-green-dark); font-weight: 700; flex-shrink: 0; }
+
+        /* === GRIDS === */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 8px; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 8px; }
+        .info-card { background: var(--bg-accent); border-radius: 6px; padding: 12px 14px; border-top: 3px solid var(--brand-blue); }
+        .info-card.green  { border-top-color: var(--brand-green-dark); }
+        .info-card.red    { border-top-color: #d90429; }
+        .info-card.orange { border-top-color: #e07800; }
+        .info-card h4 { margin: 0 0 6px; font-size: 0.88em; color: var(--brand-blue); }
+        .info-card.green  h4 { color: var(--brand-green-dark); }
+        .info-card.red    h4 { color: #d90429; }
+        .info-card.orange h4 { color: #e07800; }
+        .info-card ul { margin: 0; padding-left: 1.1em; font-size: 0.80em; line-height: 1.55; }
+
+        /* === BSP-TABELLEN === */
+        .bsp-kontext {
+            font-size: 0.72em; color: var(--brand-blue); font-weight: 600;
+            background: rgba(0,95,115,0.07); border-left: 3px solid var(--brand-blue);
+            padding: 5px 10px; border-radius: 0 4px 4px 0; margin-bottom: 8px;
+        }
+        .bsp-table { width: 100%; border-collapse: collapse; font-size: 0.80em; }
+        .bsp-table th { background: var(--brand-blue); color: #fff; padding: 6px 10px; text-align: left; font-weight: 600; font-size: 0.9em; }
+        .bsp-table td { padding: 6px 10px; border-bottom: 1px solid #e0e0e0; vertical-align: top; }
+        .bsp-table tr:last-child td { border-bottom: none; }
+        .bsp-table tr:nth-child(even) td { background: rgba(0,95,115,0.04); }
+
+        /* === ALLGEMEINE TABELLEN === */
+        .art-table { width: 100%; border-collapse: collapse; font-size: 0.78em; margin-top: 6px; }
+        .art-table th { background: var(--brand-blue); color: #fff; padding: 6px 10px; text-align: left; font-weight: 600; }
+        .art-table td { padding: 6px 10px; border-bottom: 1px solid #e0e0e0; vertical-align: top; line-height: 1.4; }
+        .art-table tr:nth-child(even) td { background: rgba(0,95,115,0.04); }
+        .art-table tr:last-child td { border-bottom: none; }
+
+        /* === HINWEIS-BOX === */
+        .hinweis-box {
+            background: #fef0e0; border-left: 3px solid #e07800;
+            padding: 8px 12px; border-radius: 0 4px 4px 0;
+            font-size: 0.79em; margin-top: 10px; line-height: 1.5;
+        }
+        .hinweis-box strong { color: #a05a00; }
+
+        /* === ZITAT-BOX === */
+        .zitat-box {
+            background: rgba(0,95,115,0.06); border-left: 3px solid var(--brand-blue);
+            padding: 8px 12px; border-radius: 0 4px 4px 0;
+            font-size: 0.80em; margin-top: 10px; line-height: 1.5;
+            font-style: italic;
+        }
+        .zitat-box cite { display: block; font-style: normal; font-size: 0.85em; color: var(--brand-blue); margin-top: 4px; font-weight: 600; }
+
+        /* === LOGO-FREIRAUM === */
+        .slide.content-slide .slide-content { padding-right: 100px; }
+
+        /* === COPYRIGHT BAR === */
+        .copyright-bar {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: rgba(0,95,115,0.06); border-top: 1px solid rgba(0,95,115,0.12);
+            padding: 3px 16px; font-size: 0.58em; color: var(--brand-blue);
+            opacity: 0.7; z-index: 10; text-align: center;
+        }
+
+        /* === PRINT-CSS === */
+        @media print {
+            * { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+            .progress-bar, .fullscreen-btn, .slide-counter,
+            .speaker-notes, .copyright-bar { display: none !important; }
+            body { margin: 0; background: white; }
+            .presentation {
+                display: block !important; position: static !important;
+                width: 297mm !important; height: auto !important; overflow: visible !important;
+            }
+            .slide {
+                display: flex !important; opacity: 1 !important; visibility: visible !important;
+                position: relative !important; transform: none !important;
+                width: 297mm !important; height: 210mm !important;
+                max-width: none !important; max-height: none !important;
+                overflow: hidden !important; page-break-after: always !important;
+                break-after: page !important; box-sizing: border-box !important;
+            }
+            .slide:last-of-type { page-break-after: avoid !important; break-after: avoid !important; }
+            .slide-content { height: 100% !important; max-width: none !important; width: 100% !important; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="progress-bar"></div>
+<button id="fullscreenBtn" class="fullscreen-btn" title="Vollbild (F)">⛶</button>
+
+<div class="presentation">
+
+<!-- ============================================================ FOLIE 1 – TITEL -->
+<section class="slide title-slide active">
+    <div class="slide-content">
+        <img src="../presentation-template/assets/logo-ki-strategie-co.svg" alt="KI Strategie & Co." class="logo">
+        <h1>Datenschutz &amp; KI: Was wirklich gilt</h1>
+        <h2>Praktische Orientierung für KI-Beauftragte</h2>
+        <p style="font-size:0.78em; margin-top:6px; opacity:0.75;">Basierend auf: Podcast „AI to the DNA" mit Dr. Sebastian Kraska, IITR Datenschutz GmbH</p>
+        <p>Copyright © 2026 Mader Consulting | Inh. Isabell Mader</p>
+    </div>
+    <div class="speaker-notes">
+        <p><strong>⏱️ 2 Minuten</strong></p>
+        <p><strong>Einstieg:</strong> „Die häufigste Frage auf YouTube: Darf ich das überhaupt mit KI? Heute klären wir das systematisch – mit einem der führenden Datenschutzanwälte Deutschlands."</p>
+        <p><strong>Kernpunkte:</strong></p>
+        <p>• Quelle: Podcast „AI to the DNA" mit Dr. Sebastian Kraska (IITR Datenschutz GmbH, München)</p>
+        <p>• Kraska ist Rechtsanwalt, Diplomkaufmann, seit 2003 auf Datenschutzrecht spezialisiert</p>
+        <p>• Ziel heute: Vom Mythos zur Praxis – was gilt wirklich?</p>
+        <p><strong>Übergang:</strong> Was werden wir heute lernen?</p>
+    </div>
+</section>
+
+<!-- ============================================================ FOLIE 2 – LERNZIELE -->
+<section class="slide content-slide">
+    <img src="../presentation-template/assets/logo-ki-strategie-co.svg" alt="Logo" class="slide-logo">
+    <div class="slide-content">
+        <div class="slide-header">
+            <h2>Lernziele dieser Einheit</h2>
+            <span class="pruef-tag tag-pflicht">Pflicht</span>
+        </div>
+        <ul class="lernziel-list">
+            <li>Datenschutz als Totschlagargument erkennen und konstruktiv entkräften</li>
+            <li>Auftragsverarbeitung und Business-Accounts korrekt einordnen</li>
+            <li>US-Datentransfers rechtlich einschätzen – Mythos Serverstandort verstehen</li>
+            <li>Agentic AI datenschutzkonform gestalten: Guardrails und Verantwortlichkeit</li>
+            <li>Art. 22 DSGVO erklären: Wann muss ein Mensch entscheiden?</li>
+            <li>Die drei Prioritäten für den KI-Einsatz im Unternehmen benennen</li>
+        </ul>
+    </div>
+    <div class="speaker-notes">
+        <p><strong>⏱️ 1 Minute</strong></p>
+        <p><strong>Übergang:</strong> Beginnen wir mit dem häufigsten Missverständnis.</p>
+    </div>
+</section>
+
+<!-- ============================================================ SECTION: TOTSCHLAGARGUMENT -->
+<section class="slide section-slide">
+    <div class="slide-content">
+        <img src="../presentation-template/assets/logo-ki-strategie-co.svg" alt="Logo" class="slide-logo">
+        <h2>„Datenschutz geht nicht" – Totschlagargument oder berechtigte Sorge?</h2>
+        <p>Was Datenschutz wirklich ist – und was er nicht ist</p>
+    </div>
+    <div class="speaker-notes">
+        <p><strong>⏱️ 30 Sekunden</strong></p>
+        <p><strong>Übergang:</strong> Fangen wir mit der Frage an, die Sebastian Kraska auf jeder Konferenz begegnet.</p>
+    </div>
+</section>
+
+<!-- ============================================================ FOLIE 4 – DAS MISSVERSTÄNDNIS -->
+<section class="slide content-slide">
+    <img src="../presentation-template/assets/logo-ki-strategie-co.svg" alt="Logo" class="slide-logo">
+    <div class="slide-content">
+        <div class="slide-header">
+            <h2>Datenschutz: Demokratierecht – kein Innovationsverbot</h2>
+            <span class="pruef-tag tag-pflicht">Pflicht</span>
+        </div>
+        <div class="grid-2">
+            <div class="info-card">
+                <h4>Was Datenschutz wirklich ist</h4>
+                <ul>
+                    <li>Entstanden als <strong>Abwehrrecht des Einzelnen gegen staatliche Überwachung</strong></li>
+                    <li>„Demokratieermöglichungsgesetz" – schützt Meinungsfreiheit, Selbstbestimmung</li>
+                    <li>Sinnvoller und schützenswerter Kern – auch in der KI-Welt</li>
+                    <li>DSGVO = konkrete Ausformung dieses Grundrechts</li>
+                </ul>
+            </div>
+            <div class="info-card red">
+                <h4>Was das Totschlagargument anrichtet</h4>
+                <ul>
+                    <li>„Geht nicht wegen Datenschutz" = oft gefährliches <strong>Halbwissen</strong></li>
+                    <li>Führt zu: Mitarbeitende nutzen private/kostenlose Accounts</li>
+                    <li><strong>Shadow IT</strong> = das eigentliche Problem: unkontrolliertes Training auf Unternehmensdaten</li>
+                    <li>Nichts tun ist oft der <strong>riskantere Weg</strong></li>
+                </ul>
+            </div>
+        </div>
+        <div class="zitat-box" style="margin-top:10px;">
+            „Es gibt Rahmenbedingungen, unter denen KI-Systeme datenschutzkonform eingesetzt werden können. Das Pauschalargument ‚geht nicht' würde ich zurückweisen."
+            <cite>Dr. Sebastian Kraska, IITR Datenschutz GmbH</cite>
+        </div>
+    </div>
+    <div class="speaker-notes">
+        <p><strong>⏱️ 5 Minuten</strong></p>
+        <p><strong>Kernpunkte:</strong></p>
+        <p>• Datenschutz kommt aus der Science-Fiction der 70er – Frankreich, Angst vor staatlicher Überwachung → Art. 22 DSGVO (automatisierte Einzelentscheidung) trägt diese Herkunft noch in sich</p>
+        <p>• Normalisierungseffekt: Google wurde nie hinterfragt – KI-Tools werden viel strenger bewertet, obwohl technisch vergleichbar</p>
+        <p>• Shadow IT: Wenn Mitarbeiter private ChatGPT-Free-Accounts nutzen, trainieren sie das Modell auf Unternehmensdaten – das ist das eigentliche Datenschutzproblem</p>
+        <p>• KI-Beauftragte können hier aktiv vermitteln: „Was geht, und wie geht es sicher?"</p>
+        <p><strong>Interaktion:</strong> „Kennen Sie das Totschlagargument aus Ihrem Unternehmen? Welche Begründungen hören Sie am häufigsten?"</p>
+        <p><strong>Übergang:</strong> Was sind die Grundregeln, unter denen KI-Einsatz erlaubt ist?</p>
+    </div>
+</section>
+
+<!-- ============================================================ SECTION: AUFTRAGSVERARBEITUNG -->
+<section class="slide section-slide">
+    <div class="slide-content">
+        <img src="../presentation-template/assets/logo-ki-strategie-co.svg" alt="Logo" class="slide-logo">
+        <h2>KI-Outsourcing &amp; Auftragsverarbeitung</h2>
+        <p>Das kleine 1×1 für den datenschutzkonformen KI-Einsatz</p>
+    </div>
+    <div class="speaker-notes">
+        <p><strong>⏱️ 30 Sekunden</strong></p>
+        <p><strong>Übergang:</strong> Welche Grundregel gilt, wenn ich Daten an einen KI-Anbieter gebe?</p>
+    </div>
+</section>
+
+<!-- ============================================================ FOLIE 6 – AUFTRAGSVERARBEITUNG -->
+<section class="slide content-slide">
+    <img src="../presentation-template/assets/logo-ki-strategie-co.svg" alt="Logo" class="slide-logo">
+    <div class="slide-content">
+        <div class="slide-header">
+            <h2>Auftragsverarbeitung: Die Grundregel</h2>
+            <span class="pruef-tag tag-pflicht">Pflicht</span>
+        </div>
+        <div class="grid-2" style="margin-bottom:10px;">
+            <div class="info-card green">
+                <h4>Erlaubt: Weisungsgebundene Verarbeitung (AVV)</h4>
+                <ul>
+                    <li>Anbieter verarbeitet Daten <strong>in meinem Auftrag</strong>, auf meine Weisung</li>
+                    <li>Ich bleibe datenschutzrechtlich verantwortlich</li>
+                    <li>Anbieter = „verlängerte Werkbank"</li>
+                    <li>Basis: <strong>Auftragsverarbeitungsvertrag (AVV)</strong> nach Art. 28 DSGVO</li>
+                    <li>Kein Training des Modells auf meinen Daten</li>
+                </ul>
+            </div>
+            <div class="info-card red">
+                <h4>Nicht erlaubt: Verarbeitung für eigene Zwecke</h4>
+                <ul>
+                    <li>Anbieter nutzt meine Daten für <strong>eigenes Modelltraining</strong></li>
+                    <li>Erfordert separate Rechtsgrundlage + Einwilligung</li>
+                    <li>Free-Accounts: Kein AVV → kein datenschutzkonformer Einsatz</li>
+                </ul>
+            </div>
+        </div>
+        <div class="hinweis-box">
+            <strong>Fastregel:</strong> Business-Accounts der großen Anbieter (Claude Pro/Teams, ChatGPT Business, Copilot for Microsoft 365) enthalten AVV + kein Training auf Kundendaten. Free-Accounts nicht. „Wenn es kostenlos ist, bist du das Produkt."
+        </div>
+    </div>
+    <div class="speaker-notes">
+        <p><strong>⏱️ 5 Minuten</strong></p>
+        <p><strong>Kernpunkte:</strong></p>
+        <p>• AVV = Art. 28 DSGVO – das ist keine Formalität, sondern der rechtliche Kern der KI-Nutzung</p>
+        <p>• „Verlängerte Werkbank": Wie ein Buchhalter, dem ich Buchhaltungsdaten gebe – der darf sie nicht für eigene Zwecke nutzen</p>
+        <p>• Früher ChatGPT ohne Firmenkonto: Training musste manuell deaktiviert werden, AVV fehlte → war damals nicht datenschutzkonform</p>
+        <p>• Heute: Bei allen Business-Produkten implementiert – kein Training, AVV vorhanden</p>
+        <p>• KI-Beauftragter: Sicherstellen, dass im Unternehmen nur lizenzierte Business-Accounts genutzt werden</p>
+        <p><strong>Übergang:</strong> Wie sieht das konkret bei SmartHire aus?</p>
+    </div>
+</section>
+
+<!-- ============================================================ FOLIE 7 – PRAXISBEISPIEL SMARTHIRE AUFTRAGSVERARBEITUNG -->
+<section class="slide content-slide">
+    <img src="../presentation-template/assets/logo-ki-strategie-co.svg" alt="Logo" class="slide-logo">
+    <div class="slide-content">
+        <div class="slide-header">
+            <h2>Praxisbeispiel: SmartHire &amp; Auftragsverarbeitung</h2>
+            <span class="pruef-tag tag-vertiefung">Vertiefung</span>
+        </div>
+        <div class="bsp-kontext">Szenario: Muster GmbH — SmartHire | KI-gestützte Bewerbungsanalyse (Hochrisiko-KI, Anhang III Nr. 4a EU AI Act)</div>
+        <table class="bsp-table">
+            <thead><tr><th>Frage</th><th>SmartHire-Antwort</th><th>Norm-Referenz</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td>Wer verarbeitet die Bewerberdaten?</td>
+                    <td>Cloud-KI-Anbieter im Auftrag der Muster GmbH → Auftragsverarbeitung</td>
+                    <td>Art. 28 DSGVO</td>
+                </tr>
+                <tr>
+                    <td>Was muss vertraglich geregelt sein?</td>
+                    <td>AVV mit Anbieter: Zweck, Weisungen, Löschfristen, Subauftragnehmer</td>
+                    <td>Art. 28 Abs. 3 DSGVO</td>
+                </tr>
+                <tr>
+                    <td>Darf der Anbieter Lebensläufe für Training nutzen?</td>
+                    <td>Nein – nur mit separater Rechtsgrundlage und Einwilligung der Bewerber</td>
+                    <td>Art. 6 DSGVO</td>
+                </tr>
+                <tr>
+                    <td>Wer haftet bei Datenschutzverletzung?</td>
+                    <td>Muster GmbH als Verantwortliche – auch wenn Fehler beim Anbieter liegt</td>
+                    <td>Art. 82 DSGVO</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="speaker-notes">
+        <p><strong>⏱️ 4 Minuten</strong></p>
+        <p><strong>Kernpunkte:</strong></p>
+        <p>• Muster GmbH ist „Verantwortliche" i. S. d. DSGVO – der KI-Anbieter ist Auftragsverarbeiter</p>
+        <p>• Ohne AVV: jeder Datentransfer an den Anbieter ist eine unzulässige Datenweitergabe</p>
+        <p>• Lebensläufe enthalten oft besondere Kategorien (Foto, Gesundheit, Religion) → Art. 9 DSGVO beachten</p>
+        <p>• KI-Beauftragte: AVV prüfen und dokumentieren – das ist ein Sofort-Artefakt im KI-Register</p>
+        <p><strong>Interaktion:</strong> „Haben Sie für Ihre KI-Tools bereits AVVs abgeschlossen? Wer ist bei Ihnen zuständig dafür?"</p>
+        <p><strong>Übergang:</strong> Häufige Folgefrage: Was ist mit US-Anbietern – sind die Server in Deutschland?</p>
+    </div>
+</section>
+
+<!-- ============================================================ SECTION: US-TRANSFERS -->
+<section class="slide section-slide">
+    <div class="slide-content">
+        <img src="../presentation-template/assets/logo-ki-strategie-co.svg" alt="Logo" class="slide-logo">
+        <h2>US-Datentransfers &amp; Serverstandort</h2>
+        <p>Was gilt – und warum „Server in Deutschland" kein Allheilmittel ist</p>
+    </div>
+    <div class="speaker-notes">
+        <p><strong>⏱️ 30 Sekunden</strong></p>
+        <p><strong>Übergang:</strong> „Die Server stehen in Frankfurt" – das hören wir oft. Was steckt dahinter?</p>
+    </div>
+</section>
+
+<!-- ============================================================ FOLIE 9 – SERVERSTANDORT-MYTHOS -->
+<section class="slide content-slide">
+    <img src="../presentation-template/assets/logo-ki-strategie-co.svg" alt="Logo" class="slide-logo">
+    <div class="slide-content">
+        <div class="slide-header">
+            <h2>Serverstandort: Mythos vs. Rechtslage</h2>
+            <span class="pruef-tag tag-pflicht">Pflicht</span>
+        </div>
+        <div class="grid-2" style="margin-bottom:8px;">
+            <div class="info-card green">
+                <h4>Was aktuell gilt: EU-US Data Privacy Framework</h4>
+                <ul>
+                    <li>Angemessenheitsbeschluss der EU-Kommission (2023): US-Anbieter dürfen datenschutzkonform eingesetzt werden</li>
+                    <li>Datenschutzbehörden greifen derzeit nicht aktiv ein</li>
+                    <li>AVV + Business-Account = rechtlich vertretbar</li>
+                    <li>EuGH-Verfahren läuft (Schrems III möglich)</li>
+                </ul>
+            </div>
+            <div class="info-card orange">
+                <h4>Server in Deutschland: psychologisch, nicht juristisch</h4>
+                <ul>
+                    <li>US Cloud Act: US-Regierung hat theoretisch gleiches Zugriffsrecht unabhängig vom Serverstandort</li>
+                    <li>Microsoft-Modelle zur Entkopplung: noch <strong>nicht höchstrichterlich getestet</strong></li>
+                    <li>Serverstandort = eher Steuer- und Latenz-Argument</li>
+                    <li>Empfehlung: Europäische Datenhaltung <em>präferieren</em> – nicht als Ausschlusskriterium</li>
+                </ul>
+            </div>
+        </div>
+        <div class="hinweis-box">
+            <strong>Einordnung (Kraska):</strong> US-Abhängigkeit ist eine Frage der <strong>Risikosteuerung</strong>, nicht des Datenschutzrechts. Wer in einem regulierten Bereich ohne US-Footprint arbeitet, sollte europäische Datenhaltung anstreben. Ein Tochterunternehmen eines US-Konzerns kann das nicht sinnvoll tun.
+        </div>
+    </div>
+    <div class="speaker-notes">
+        <p><strong>⏱️ 5 Minuten</strong></p>
+        <p><strong>Kernpunkte:</strong></p>
+        <p>• EU-US DPF = aktuell gültig, aber anfechtbar – wir hatten Schrems I (2015) und Schrems II (2020), beide kippten das vorherige Abkommen</p>
+        <p>• Politische Dimension: Russland-Transfers wurden bis zum Ukraine-Angriff nicht problematisiert – dann plötzlich doch → zeigt politische Komponente der Datenschutzdurchsetzung</p>
+        <p>• China: Kein Angemessenheitsbeschluss – nur über Standardvertragsklauseln (SCC), muss geprüft werden ob das Unternehmen das überhaupt einhalten kann</p>
+        <p>• Open Source / lokale Modelle (z. B. Hugging Face auf eigenem Server): technisch möglich, aber Change Management sehr aufwendig (Beispiel München → wieder zurück zu Microsoft)</p>
+        <p>• Das Rennen um die Modelle ist verloren – das Rennen um die Implementierung ist noch offen (Kraska)</p>
+        <p><strong>Interaktion:</strong> „Welches Argument hören Sie in Ihrem Unternehmen häufiger: Serverstandort oder Cloud Act?"</p>
+        <p><strong>Übergang:</strong> Wenn KI nicht mehr nur antwortet, sondern autonom agiert – was ändert sich?</p>
+    </div>
+</section>
+
+<!-- ============================================================ SECTION: AGENTIC AI -->
+<section class="slide section-slide">
+    <div class="slide-content">
+        <img src="../presentation-template/assets/logo-ki-strategie-co.svg" alt="Logo" class="slide-logo">
+        <h2>Agentic AI datenschutzkonform gestalten</h2>
+        <p>Wenn KI autonom auf Unternehmensdaten zugreift</p>
+    </div>
+    <div class="speaker-notes">
+        <p><strong>⏱️ 30 Sekunden</strong></p>
+        <p><strong>Übergang:</strong> Copy-Paste in ChatGPT ist harmlos. Was ist, wenn ein Agent autonom in Mails, Dokumente und Kalender schaut?</p>
+    </div>
+</section>
+
+<!-- ============================================================ FOLIE 11 – AGENTIC AI GUARDRAILS -->
+<section class="slide content-slide">
+    <img src="../presentation-template/assets/logo-ki-strategie-co.svg" alt="Logo" class="slide-logo">
+    <div class="slide-content">
+        <div class="slide-header">
+            <h2>Guardrails für KI-Agenten: Dieselben Regeln wie für Mitarbeitende</h2>
+            <span class="pruef-tag tag-pflicht">Pflicht</span>
+        </div>
+        <div class="grid-3" style="margin-bottom:10px;">
+            <div class="info-card">
+                <h4>Rollen- &amp; Rechtekonzept erhalten</h4>
+                <ul>
+                    <li>KI-Agent darf nur Daten sehen, die der User ohnehin sehen darf</li>
+                    <li>Kein „Bypass" durch den Agenten – Erforderlichkeitsprinzip gilt</li>
+                    <li>Technisch: Agent erbt die Zugriffsrechte des aufrufenden Users</li>
+                </ul>
+            </div>
+            <div class="info-card green">
+                <h4>Workspace &amp; Guardrails definieren</h4>
+                <ul>
+                    <li>Agent bekommt definierten <strong>Arbeitsbereich</strong> (Ordner, System, Datenmenge)</li>
+                    <li>Guardrails wie für Mitarbeitende: Was darf er tun / nicht tun?</li>
+                    <li>Kein Löschen, Duplizieren oder Weitergeben ohne explizite Erlaubnis</li>
+                </ul>
+            </div>
+            <div class="info-card orange">
+                <h4>Verantwortlichkeit bleibt beim Unternehmen</h4>
+                <ul>
+                    <li>Unternehmen haftet für Datenverarbeitungsvorgänge des Agenten</li>
+                    <li>Fehler des Agenten = Fehler des Unternehmens</li>
+                    <li>Protokollierung (Logging) der Agenten-Aktionen empfohlen</li>
+                </ul>
+            </div>
+        </div>
+        <div class="zitat-box">
+            „Du musst dem System entsprechende Guardrails mitgeben, analog zum Anlernen eines Beschäftigten – was er tun und was er nicht tun darf."
+            <cite>Dr. Sebastian Kraska, IITR Datenschutz GmbH</cite>
+        </div>
+    </div>
+    <div class="speaker-notes">
+        <p><strong>⏱️ 5 Minuten</strong></p>
+        <p><strong>Kernpunkte:</strong></p>
+        <p>• Agentic AI = Claude Code, Copilot for Work, Codex – Systeme, die autonom in Mails, Drive, Kalender schauen können</p>
+        <p>• Workspace-Konzept: Wie einem Mitarbeitenden einen Rahmen geben – nicht Mikro-Management, aber klare Grenzen</p>
+        <p>• Prompt Injection: Technisch schwer zu verhindern – deshalb Guardrails auf Systemebene, nicht nur Prompt-Ebene</p>
+        <p>• Praktisch: System-Prompt als „Betriebshandbuch" → je besser geschrieben, desto sicherer der Agent</p>
+        <p>• Zukunftsbild (Kraska): Wer heute gutes Operating System für seine Agenten schreibt, hat in Zukunft sogar bessere Datenschutz-Durchsetzung als ohne KI</p>
+        <p><strong>Interaktion:</strong> „Setzen Sie bereits agentische KI-Tools ein? Welche Guardrails haben Sie definiert?"</p>
+        <p><strong>Übergang:</strong> Wann muss trotzdem ein Mensch entscheiden?</p>
+    </div>
+</section>
+
+<!-- ============================================================ SECTION: ART. 22 DSGVO -->
+<section class="slide section-slide">
+    <div class="slide-content">
+        <img src="../presentation-template/assets/logo-ki-strategie-co.svg" alt="Logo" class="slide-logo">
+        <h2>Art. 22 DSGVO: Wer entscheidet?</h2>
+        <p>Der Grundsatz: KI soll zuarbeiten – nicht entscheiden</p>
+    </div>
+    <div class="speaker-notes">
+        <p><strong>⏱️ 30 Sekunden</strong></p>
+        <p><strong>Übergang:</strong> Ein Artikel der DSGVO, der jahrelang im Dornröschenschlaf lag – und jetzt mitten in der KI-Debatte aufgewacht ist.</p>
+    </div>
+</section>
+
+<!-- ============================================================ FOLIE 13 – ART. 22 DSGVO -->
+<section class="slide content-slide">
+    <img src="../presentation-template/assets/logo-ki-strategie-co.svg" alt="Logo" class="slide-logo">
+    <div class="slide-content">
+        <div class="slide-header">
+            <h2>Art. 22 DSGVO: Automatisierte Einzelentscheidung</h2>
+            <span class="pruef-tag tag-pflicht">Pflicht</span>
+        </div>
+        <div class="grid-2" style="margin-bottom:8px;">
+            <div class="info-card">
+                <h4>Was Art. 22 DSGVO regelt</h4>
+                <ul>
+                    <li>Verbot: Entscheidungen, die <strong>ausschließlich auf automatisierter Verarbeitung</strong> beruhen und rechtliche / erhebliche Auswirkungen haben</li>
+                    <li>Herkunft: Science-Fiction der 70er (Frankreich) – Angst vor Maschinenentscheidungen</li>
+                    <li>Jahrelang unbeachtet – jetzt hoch relevant durch KI</li>
+                    <li>Ausnahmen: Einwilligung, Vertragserfüllung, gesetzliche Erlaubnis</li>
+                </ul>
+            </div>
+            <div class="info-card orange">
+                <h4>Aktuell &amp; Omnibus-Debatte</h4>
+                <ul>
+                    <li>Aktueller Grundsatz: <strong>Mensch muss letzte Entscheidung treffen</strong> (Driver Seat)</li>
+                    <li>KI darf zuarbeiten, vorqualifizieren, vorsortieren</li>
+                    <li>EU-Kommission will Art. 22 im Omnibus <strong>abschwächen</strong> → politisch umstritten</li>
+                    <li>EDSA/EDSB: kritisch gegenüber Einschränkungen</li>
+                </ul>
+            </div>
+        </div>
+        <div class="hinweis-box">
+            <strong>Drei Dinge bleiben beim Menschen (Kraska):</strong> 1. Intent (Richtung vorgeben) · 2. Entscheidungshoheit · 3. Haftung und Verantwortung – das kann keine KI übernehmen.
+        </div>
+    </div>
+    <div class="speaker-notes">
+        <p><strong>⏱️ 5 Minuten</strong></p>
+        <p><strong>Kernpunkte:</strong></p>
+        <p>• Art. 22 DSGVO = „automatisierte Einzelentscheidung mit rechtlicher oder ähnlich erheblicher Wirkung" → Bewerbungsabsagen, Kreditvergabe, Versicherbarkeit</p>
+        <p>• Konkrete Grenze: KI kann alle Bewerbungen vorqualifizieren, aber automatische Absage → Mensch muss involviert sein</p>
+        <p>• Recht ist Sozialwissenschaft: Regeln können sich ändern. Omnibus-Debatte zeigt, dass Gesellschaft gerade aushandelt, wie viel Maschinenentscheidung sie will</p>
+        <p>• Selbstfahrendes Auto als Analogie: Auch dort wurde Haftungsfrage gelöst – irgendwann wird Art. 22 angepasst, aber heute gilt er</p>
+        <p>• KI-Beauftragte: Art. 22 im Unternehmen prüfen – welche Prozesse treffen automatisiert erhebliche Entscheidungen?</p>
+        <p><strong>Interaktion:</strong> „Finden Sie Art. 22 DSGVO in SmartHire wieder. Wo genau ist die Grenze zwischen Zuarbeiten und Entscheiden?"</p>
+        <p><strong>Übergang:</strong> Wie sieht das konkret bei SmartHire aus?</p>
+    </div>
+</section>
+
+<!-- ============================================================ FOLIE 14 – PRAXISBEISPIEL ART. 22 SMARTHIRE -->
+<section class="slide content-slide">
+    <img src="../presentation-template/assets/logo-ki-strategie-co.svg" alt="Logo" class="slide-logo">
+    <div class="slide-content">
+        <div class="slide-header">
+            <h2>Praxisbeispiel: Art. 22 DSGVO bei SmartHire</h2>
+            <span class="pruef-tag tag-vertiefung">Vertiefung</span>
+        </div>
+        <div class="bsp-kontext">Szenario: Muster GmbH — SmartHire | Bewerbungsscreening als Hochrisiko-KI (EU AI Act Anhang III Nr. 4a)</div>
+        <table class="bsp-table">
+            <thead><tr><th>Prozessschritt</th><th>KI-Anteil erlaubt?</th><th>Norm-Referenz</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td>CV-Analyse: Ranking und Scoring aller Bewerbungen</td>
+                    <td>Ja – KI darf vorqualifizieren und ranken (Zuarbeiten)</td>
+                    <td>Art. 22 DSGVO, Art. 13 EU AI Act</td>
+                </tr>
+                <tr>
+                    <td>Automatische Absage ohne menschliche Prüfung</td>
+                    <td><strong>Nein</strong> – erhebliche Auswirkung auf Bewerber → Mensch muss entscheiden</td>
+                    <td>Art. 22 Abs. 1 DSGVO</td>
+                </tr>
+                <tr>
+                    <td>HR-Manager sieht KI-Ranking und entscheidet selbst</td>
+                    <td>Ja – KI als Entscheidungsunterstützung, Mensch im Driver Seat</td>
+                    <td>Art. 22 DSGVO (Ausnahme: menschliche Überprüfung)</td>
+                </tr>
+                <tr>
+                    <td>Bewerber fragt: „Warum wurde ich abgelehnt?"</td>
+                    <td>Auskunftspflicht (Art. 15 DSGVO) + Erklärungspflicht (Art. 13 EU AI Act) → Prozess muss stehen</td>
+                    <td>Art. 15 DSGVO, Art. 13 EU AI Act</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="speaker-notes">
+        <p><strong>⏱️ 4 Minuten</strong></p>
+        <p><strong>Kernpunkte:</strong></p>
+        <p>• Die Frage, die Kraska stellt: Wenn SmartHire skaliert – liest dann noch irgendein Mensch die Bewerbungen? Wenn nicht → Art. 22 verletzt</p>
+        <p>• Erklärungspflicht: Bewerber haben das Recht zu wissen, nach welchen Kriterien entschieden wurde (Art. 15 DSGVO + Art. 13 EU AI Act Transparenz)</p>
+        <p>• Gender-Bias, Alters-Bias (aus Modul 3) verschärfen Art. 22: Eine Maschine darf keine Entscheidung mit diskriminierendem Bias vollständig automatisiert treffen</p>
+        <p>• Dokumentation: Welcher Mensch hat wann was entschieden – und mit welcher KI-Unterstützung? Das ist Compliance-Nachweis</p>
+        <p><strong>Übergang:</strong> Was sind jetzt die konkreten Empfehlungen für Unternehmen?</p>
+    </div>
+</section>
+
+<!-- ============================================================ SECTION: WAS TUN? -->
+<section class="slide section-slide">
+    <div class="slide-content">
+        <img src="../presentation-template/assets/logo-ki-strategie-co.svg" alt="Logo" class="slide-logo">
+        <h2>Was sollten Unternehmen tun?</h2>
+        <p>Drei Prioritäten – von der US-Konferenz bis zum Mittelstand</p>
+    </div>
+    <div class="speaker-notes">
+        <p><strong>⏱️ 30 Sekunden</strong></p>
+        <p><strong>Übergang:</strong> Kraska war auf einer großen Konferenz in den USA – hier ist die Prioritätenliste, die er mitgebracht hat.</p>
+    </div>
+</section>
+
+<!-- ============================================================ FOLIE 16 – 3 PRIORITÄTEN -->
+<section class="slide content-slide">
+    <img src="../presentation-template/assets/logo-ki-strategie-co.svg" alt="Logo" class="slide-logo">
+    <div class="slide-content">
+        <div class="slide-header">
+            <h2>3 Prioritäten für den KI-Einsatz im Unternehmen</h2>
+            <span class="pruef-tag tag-pflicht">Pflicht</span>
+        </div>
+        <div class="grid-3" style="margin-bottom:10px;">
+            <div class="info-card">
+                <h4>1. Informationssicherheit</h4>
+                <ul>
+                    <li>Grundprinzip: Sicherheit geht vor Funktionalität</li>
+                    <li>Stand-der-Technik-Anforderung (Art. 32 DSGVO) – gilt auch für KI-Systeme</li>
+                    <li>KI-Modelle finden Sicherheitslücken (Beispiel Claude Opus) → Chance UND Risiko</li>
+                    <li>Principle-based: Nicht Checkliste, sondern Grundprinzipien durchhalten</li>
+                </ul>
+            </div>
+            <div class="info-card green">
+                <h4>2. DSGVO-Basics („kleines 1×1")</h4>
+                <ul>
+                    <li>AVV für alle KI-Tools prüfen und abschließen</li>
+                    <li>Nur Business-Accounts – keine Free-Accounts im Unternehmen</li>
+                    <li>Rollen-/Rechtekonzept auf KI-Agenten übertragen</li>
+                    <li>Art. 22-Prozesse identifizieren: Wo entscheidet KI faktisch allein?</li>
+                </ul>
+            </div>
+            <div class="info-card orange">
+                <h4>3. Aufsichtsrechtliche Lage beobachten</h4>
+                <ul>
+                    <li>EU-US DPF: EuGH-Verfahren verfolgen</li>
+                    <li>Omnibus: Art. 22 + Art. 15 DSGVO stehen zur Debatte</li>
+                    <li>Digital Services Act / Digital Markets Act: politisch verhandelt</li>
+                    <li>KI-Beauftragte als Frühwarnsystem im Unternehmen</li>
+                </ul>
+            </div>
+        </div>
+        <div class="hinweis-box">
+            <strong>Empfehlung für KMU (Kraska):</strong> Transparent machen, wo KI eingesetzt wird. Datenschutz-Basics erfüllen. Das ist das Hausaufgabenset – mehr braucht der Mittelstand nicht. Große AI-Act-Projekte bleiben (noch) den Konzernen vorbehalten.
+        </div>
+    </div>
+    <div class="speaker-notes">
+        <p><strong>⏱️ 5 Minuten</strong></p>
+        <p><strong>Kernpunkte:</strong></p>
+        <p>• Priorität 1 (Infosicherheit): Art. 32 DSGVO verlangt Stand der Technik – KI-Tools müssen in die Sicherheitsbewertung einbezogen werden</p>
+        <p>• Priorität 2 (DSGVO-Basics): Das ist für KI-Beauftragte das Kerngeschäft – AVV, Rechtekonzept, Art. 22-Prüfung</p>
+        <p>• Priorität 3 (Aufsichtsrecht): Politik spielt eine immer größere Rolle bei der Durchsetzung → DSA/DMA als Verhandlungsmasse bei Zollverhandlungen</p>
+        <p>• KI-Officer: Schnittmenge Recht + Technik – genau das ist die Rolle der KI-Beauftragten</p>
+        <p>• Zukunft: Wer gute Datenschutz-Guardrails als Prompts schreibt, hat bessere Compliance als ohne KI</p>
+        <p><strong>Interaktion:</strong> „Welche dieser drei Prioritäten ist in Ihrem Unternehmen am wenigsten abgedeckt?"</p>
+        <p><strong>Übergang:</strong> Die wichtigsten Punkte zum Mitnehmen.</p>
+    </div>
+</section>
+
+<!-- ============================================================ FOLIE 17 – KEY TAKEAWAYS -->
+<section class="slide content-slide">
+    <img src="../presentation-template/assets/logo-ki-strategie-co.svg" alt="Logo" class="slide-logo">
+    <div class="slide-content">
+        <div class="slide-header">
+            <h2>Key Takeaways</h2>
+            <span class="pruef-tag tag-pflicht">Pflicht</span>
+        </div>
+        <ul class="takeaway-list">
+            <li>Datenschutz ist kein Innovationsverbot – sondern ein Abwehrrecht. „Geht nicht" ist meist gefährliches Halbwissen, das Shadow IT erzeugt.</li>
+            <li>Business-Accounts der großen Anbieter enthalten AVV + kein Modelltraining. Free-Accounts nicht. Fastregel: Wenn es kostenlos ist, bist du das Produkt.</li>
+            <li>Serverstandort ist ein psychologisches, kein juristisches Argument. Entscheidend ist: AVV vorhanden, kein Training auf eigenen Daten, EU-US DPF gültig.</li>
+            <li>KI-Agenten erben das Rollen-/Rechtekonzept des Users. Guardrails sind wie Einweisungen für Mitarbeitende – das Unternehmen haftet für den Agenten.</li>
+            <li>Art. 22 DSGVO: KI darf zuarbeiten und vorqualifizieren – aber erhebliche Entscheidungen (Ablehnung, Kredit, Versicherung) brauchen einen Menschen im Driver Seat.</li>
+            <li>KI-Beauftragter = Schnittmenge Recht + Technik: AVV prüfen, Art. 22-Prozesse identifizieren, Omnibus-Debatte verfolgen.</li>
+        </ul>
+    </div>
+    <div class="speaker-notes">
+        <p><strong>⏱️ 3 Minuten</strong></p>
+        <p><strong>Abschluss:</strong> Datenschutz und KI sind kein Widerspruch – wenn man die Grundregeln kennt. Das ist die Kernkompetenz der KI-Beauftragten.</p>
+        <p><strong>Kernpunkte:</strong></p>
+        <p>• Der häufigste Fehler: KI komplett verbieten → Mitarbeitende nutzen Free-Accounts → schlimmer als nichts</p>
+        <p>• Der richtige Weg: Strukturierter Einsatz mit AVV + Business-Account + Guardrails + Art. 22-Prüfung</p>
+    </div>
+</section>
+
+<!-- ============================================================ FOLIE 18 – END-SLIDE -->
+<section class="slide end-slide">
+    <div class="slide-content">
+        <img src="../presentation-template/assets/logo-ki-strategie-co.svg" alt="KI Strategie & Co." class="logo">
+        <h1>Datenschutz &amp; KI: Was wirklich gilt</h1>
+        <h2>Ergänzungseinheit | KI-Beauftragte:r mit TÜV Rheinland geprüfter Qualifikation</h2>
+        <p style="font-size:0.85em; margin-top:8px; opacity:0.8;"><strong>Quelle:</strong> Podcast „AI to the DNA" mit Dr. Sebastian Kraska, IITR Datenschutz GmbH · DSGVO (2016/679)</p>
+        <p>Copyright © 2026 Mader Consulting | Inh. Isabell Mader</p>
+    </div>
+    <div class="speaker-notes">
+        <p><strong>⏱️ 1 Minute</strong></p>
+        <p><strong>Abschluss:</strong> Vielen Dank. Fragen zu Datenschutz und KI?</p>
+    </div>
+</section>
+
+</div><!-- .presentation -->
+
+<div class="copyright-bar">Copyright © 2026 Mader Consulting | Inh. Isabell Mader</div>
+
+<!-- Navigation Controls -->
+<nav class="navigation">
+    <button id="firstBtn" class="nav-btn" title="Erste Folie (Home)">⏮</button>
+    <button id="prevBtn" class="nav-btn" title="Zurück (←)">◀</button>
+    <button id="helpBtn" class="nav-btn" title="Hilfe (?)">?</button>
+    <button id="nextBtn" class="nav-btn" title="Weiter (→)">▶</button>
+    <button id="lastBtn" class="nav-btn" title="Letzte Folie (End)">⏭</button>
+    <button id="notesBtn" class="nav-btn" title="Notizen-Fenster (N)">📝</button>
+</nav>
+
+<!-- Slide Counter -->
+<div class="slide-counter" id="slideCounter">1 / 18</div>
+
+<!-- Help Overlay -->
+<div class="help-overlay" id="helpOverlay">
+    <div class="help-content">
+        <span class="close-help" id="closeHelp">&times;</span>
+        <h2>Tastatur-Shortcuts</h2>
+        <div class="shortcut"><span>Nächste Folie</span><kbd>→</kbd> <kbd>Leertaste</kbd></div>
+        <div class="shortcut"><span>Vorherige Folie</span><kbd>←</kbd></div>
+        <div class="shortcut"><span>Erste Folie</span><kbd>Home</kbd></div>
+        <div class="shortcut"><span>Letzte Folie</span><kbd>End</kbd></div>
+        <div class="shortcut"><span>Vollbild</span><kbd>F</kbd></div>
+        <div class="shortcut"><span>Notizen-Fenster</span><kbd>N</kbd></div>
+        <div class="shortcut"><span>Diese Hilfe</span><kbd>?</kbd></div>
+        <div class="shortcut"><span>Hilfe schließen</span><kbd>ESC</kbd></div>
+    </div>
+</div>
+
+<script src="../presentation-template/js/presentation.js"></script>
+</body>
+</html>
