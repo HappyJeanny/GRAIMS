@@ -153,12 +153,30 @@ html, body {
     var(--navy);
 }
 
-/* Logo on title slide — full logo (with text), now without excess whitespace */
+/* Emblem only on title slide — text rendered as HTML below */
 .slide-title .t-logo {
-  width: 260px;
+  width: 110px;
   height: auto;
   object-fit: contain;
   display: block;
+  margin-bottom: 14px;
+}
+
+.slide-title .t-brand {
+  font-size: 52px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.slide-title .t-brand-sub {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--teal);
   margin-bottom: 36px;
 }
 
@@ -574,7 +592,9 @@ html, body {
        ║  FOLIE 1 · TITELFOLIE                     ║
        ╚═══════════════════════════════════════════╝ -->
   <section class="slide slide-title is-active" id="s1">
-    <img src="../assets/logo.png" alt="GRAIMS" class="t-logo">
+    <img src="../assets/logo-ohne-text.png" alt="GRAIMS Emblem" class="t-logo">
+    <p class="t-brand">GRAIMS</p>
+    <p class="t-brand-sub">HR Governance | Managed for you</p>
     <h1>Ihr Präsentationstitel steht hier</h1>
     <div class="t-divider"></div>
     <p class="t-sub">Optionaler Untertitel — ergänzende Information zum Thema dieser Präsentation</p>
