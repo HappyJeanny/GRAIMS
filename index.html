@@ -247,7 +247,151 @@ body {
 }
 
 /* Scroll offset for sticky nav */
-#problem, #loesung, #warum, #vorgehen, #kontakt { scroll-margin-top: 68px; }
+#problem, #loesung, #warum, #vorgehen, #radar, #kontakt { scroll-margin-top: 68px; }
+
+/* ── RADAR ──────────────────────────────────────────── */
+.radar { background: var(--bg-soft); transition: background var(--trans); }
+
+.radar-progress {
+  display: flex; align-items: center; margin-bottom: 36px; max-width: 440px;
+}
+.rp-step {
+  display: flex; align-items: center; gap: 8px;
+  font-size: .75rem; font-weight: 700; letter-spacing: .07em;
+  text-transform: uppercase; color: var(--text-muted); white-space: nowrap;
+  transition: color var(--trans);
+}
+.rp-step.active { color: var(--teal); }
+.rp-step.done   { color: var(--text-muted); }
+.rp-num {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--border); color: var(--text-muted);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .72rem; font-weight: 800;
+  transition: background var(--trans), color var(--trans);
+}
+.rp-step.active .rp-num { background: var(--teal); color: #fff; }
+.rp-step.done   .rp-num { background: var(--navy); color: #fff; }
+.rp-line { flex: 1; height: 2px; background: var(--border); margin: 0 10px; transition: background var(--trans); }
+.rp-line.done { background: var(--teal); }
+
+.radar-card {
+  background: var(--surface); border-radius: var(--radius-xl);
+  padding: 44px 48px; box-shadow: var(--shadow-md);
+  transition: background var(--trans);
+}
+.radar-step h3 {
+  font-size: 1.25rem; font-weight: 800; color: var(--text);
+  margin-bottom: 6px; transition: color var(--trans);
+}
+.radar-step-sub {
+  font-size: .88rem; color: var(--text-muted); margin-bottom: 26px;
+  transition: color var(--trans);
+}
+.r-hidden { display: none !important; }
+
+.radar-search-wrap { margin-bottom: 18px; }
+.radar-search-wrap input {
+  width: 100%; max-width: 520px; padding: 13px 18px;
+  border: 2px solid var(--border); border-radius: var(--radius-md);
+  font-family: var(--font); font-size: 1rem; color: var(--text);
+  background: var(--bg); outline: none;
+  transition: border-color var(--trans), background var(--trans), color var(--trans);
+}
+.radar-search-wrap input:focus { border-color: var(--teal); }
+.radar-search-wrap input::placeholder { color: var(--text-muted); }
+
+.btn-radar {
+  background: var(--teal); color: #fff;
+  padding: 12px 30px; border-radius: var(--radius-md);
+  font-weight: 700; font-size: .92rem; border: none;
+  cursor: pointer; font-family: var(--font);
+  transition: background var(--trans), transform var(--trans);
+}
+.btn-radar:hover:not(:disabled) { background: var(--teal-dark); transform: translateY(-1px); }
+.btn-radar:disabled { background: var(--border); color: var(--text-muted); cursor: not-allowed; }
+.btn-ghost-sm {
+  background: none; border: 1.5px solid var(--border); color: var(--text-muted);
+  padding: 12px 22px; border-radius: var(--radius-md);
+  font-weight: 600; font-size: .88rem; cursor: pointer; font-family: var(--font);
+  transition: border-color var(--trans), color var(--trans);
+}
+.btn-ghost-sm:hover { border-color: var(--gray); color: var(--text); }
+
+.radar-hint { font-size: .78rem; color: var(--text-muted); margin-top: 10px; transition: color var(--trans); }
+
+.radar-modules {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 26px;
+}
+.r-mod {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 13px 15px; border: 1.5px solid var(--border);
+  border-radius: var(--radius-md); cursor: pointer; background: var(--bg);
+  transition: border-color var(--trans), background var(--trans);
+}
+.r-mod:hover  { border-color: rgba(0,180,200,.4); }
+.r-mod.sel    { border-color: var(--teal); background: rgba(0,180,200,.07); }
+.r-mod input  { display: none; }
+.r-mod-icon   { font-size: 1.15rem; flex-shrink: 0; margin-top: 1px; }
+.r-mod-label  { font-size: .86rem; font-weight: 700; color: var(--text); display: block; transition: color var(--trans); }
+.r-mod-sub    { font-size: .76rem; color: var(--text-muted); display: block; margin-top: 2px; transition: color var(--trans); }
+.radar-nav    { display: flex; gap: 10px; align-items: center; }
+
+/* Result */
+.res-header   { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; flex-wrap: wrap; }
+.res-badge    { padding: 5px 16px; border-radius: var(--radius-full); font-size: .74rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; white-space: nowrap; }
+.res-badge.high    { background: rgba(220,53,69,.1);  color: #c0392b; border: 1.5px solid rgba(220,53,69,.25); }
+.res-badge.unclear { background: rgba(230,168,0,.1);  color: #b8860b; border: 1.5px solid rgba(230,168,0,.25); }
+.res-badge.low     { background: rgba(40,167,69,.1);  color: #1e7e34; border: 1.5px solid rgba(40,167,69,.25); }
+.res-system   { font-size: .86rem; color: var(--text-muted); transition: color var(--trans); }
+.res-title    { font-size: 1.2rem; font-weight: 800; color: var(--text); margin-bottom: 8px; transition: color var(--trans); }
+.res-text     { font-size: .9rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 22px; transition: color var(--trans); }
+.res-tags     { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 22px; }
+.res-tag      { background: rgba(0,180,200,.1); color: var(--teal); border: 1px solid rgba(0,180,200,.3); padding: 3px 11px; border-radius: var(--radius-full); font-size: .75rem; font-weight: 700; }
+
+.pkg-hl  { font-size: .7rem; font-weight: 700; letter-spacing: .13em; color: var(--teal); text-transform: uppercase; margin-bottom: 14px; }
+.pkg-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-bottom: 22px; }
+.pkg-card {
+  border: 1.5px solid var(--border); border-radius: var(--radius-lg);
+  padding: 22px 18px; position: relative; background: var(--bg);
+  transition: border-color var(--trans), box-shadow var(--trans), background var(--trans);
+}
+.pkg-card:hover      { border-color: var(--teal); box-shadow: var(--shadow-sm); }
+.pkg-card.pk-feat    { border-color: var(--teal); background: rgba(0,180,200,.05); }
+.pk-badge {
+  position: absolute; top: -11px; left: 50%; transform: translateX(-50%);
+  background: var(--teal); color: #fff;
+  font-size: .67rem; font-weight: 800; letter-spacing: .08em;
+  padding: 3px 12px; border-radius: var(--radius-full); white-space: nowrap;
+}
+.pk-tier { font-size: .66rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 5px; transition: color var(--trans); }
+.pk-name { font-size: 1rem; font-weight: 800; color: var(--text); margin-bottom: 8px; transition: color var(--trans); }
+.pk-desc { font-size: .81rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 14px; transition: color var(--trans); }
+.pk-list { list-style: none; margin-bottom: 18px; display: flex; flex-direction: column; gap: 5px; }
+.pk-list li { font-size: .78rem; color: var(--text-muted); display: flex; gap: 7px; align-items: flex-start; transition: color var(--trans); }
+.pk-list li::before { content: '✓'; color: var(--teal); font-weight: 700; flex-shrink: 0; }
+.pk-btn {
+  display: block; width: 100%; text-align: center;
+  background: var(--navy); color: #fff;
+  padding: 9px 0; border-radius: var(--radius-md);
+  font-size: .82rem; font-weight: 700; border: none;
+  cursor: pointer; font-family: var(--font); text-decoration: none;
+  transition: background var(--trans), transform var(--trans);
+}
+.pk-btn:hover { background: var(--teal); transform: translateY(-1px); }
+.pkg-card.pk-feat .pk-btn { background: var(--teal); }
+.pkg-card.pk-feat .pk-btn:hover { background: var(--teal-dark); }
+
+.res-restart { font-size: .8rem; color: var(--text-muted); cursor: pointer; transition: color var(--trans); display: inline-block; margin-top: 16px; }
+.res-restart:hover { color: var(--teal); }
+
+@media (max-width: 760px) {
+  .radar-modules { grid-template-columns: 1fr; }
+  .pkg-grid      { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .radar-card { padding: 26px 20px; }
+}
 
 /* ── PROBLEM ───────────────────────────────────────── */
 .problem { background: var(--bg-soft); transition: background var(--trans); }
@@ -387,8 +531,10 @@ body {
 /* ── FOOTER ────────────────────────────────────────── */
 footer {
   background: var(--navy-deep); color: rgba(255,255,255,.42);
-  padding: 28px 2rem; text-align: center; font-size: .8rem;
+  padding: 28px 2rem; font-size: .8rem;
+  display: flex; align-items: center; justify-content: center; gap: 20px;
 }
+footer img.footer-logo { height: 32px; opacity: .7; }
 footer a {
   color: rgba(255,255,255,.52); text-decoration: none;
   margin: 0 12px; transition: color var(--trans);
@@ -425,8 +571,8 @@ footer a:hover { color: var(--teal); }
 <!-- ══ NAV ══════════════════════════════════════════ -->
 <nav class="nav">
   <a class="nav-brand" href="#">
-    <img src="assets/logo.png" alt="GRAIMS Logo"
-         width="160" height="48" fetchpriority="high"
+    <img src="assets/logo-ohne-text.png" alt="GRAIMS Logo"
+         height="48" fetchpriority="high"
          onerror="this.style.display='none'">
     <div class="nav-brand-text">
       <span class="nav-brand-name">GRAIMS</span>
@@ -469,9 +615,14 @@ footer a:hover { color: var(--teal); }
           <div class="trust-icon">✓</div>
           Festpreispakete mit definierten Deliverables – kein Stundensatz-Risiko
         </div>
+        <div class="trust-item">
+          <div class="trust-icon">⬡</div>
+          KI- &amp; Compliance-Radar: Prüfen Sie jetzt Ihr Bewerbermanagementsystem
+        </div>
       </div>
       <div class="cta-group">
         <button class="btn-primary" onclick="Calendly.initPopupWidget({url:'https://calendly.com/isabell-mader/erstgesprach'});return false;">Kostenloses Erstgespräch</button>
+        <a class="btn-ghost" href="#radar">Plattform prüfen →</a>
         <a class="btn-ghost" href="#loesung">Was wir liefern ↓</a>
       </div>
     </div>
@@ -625,6 +776,55 @@ footer a:hover { color: var(--teal); }
   </div>
 </section>
 
+<!-- ══ RADAR ══════════════════════════════════════════ -->
+<section class="section radar" id="radar">
+  <div class="section-inner">
+    <span class="section-tag">KI-Radar</span>
+    <h2 class="section-title">KI- &amp; Compliance-Radar<br>für Bewerbermanagementsysteme</h2>
+    <p class="section-sub">Über 200 Systeme im DACH-Raum geprüft. Wählen Sie Ihr System – und erfahren Sie in 2 Minuten, ob Sie Handlungsbedarf nach EU AI Act haben.</p>
+
+    <div class="radar-progress">
+      <div class="rp-step active" id="rp1"><span class="rp-num">1</span>System</div>
+      <div class="rp-line" id="rl1"></div>
+      <div class="rp-step" id="rp2"><span class="rp-num">2</span>Module</div>
+      <div class="rp-line" id="rl2"></div>
+      <div class="rp-step" id="rp3"><span class="rp-num">3</span>Ergebnis</div>
+    </div>
+
+    <div class="radar-card">
+
+      <!-- Schritt 1: System -->
+      <div class="radar-step" id="rs1">
+        <h3>Welches Bewerbermanagementsystem setzen Sie ein?</h3>
+        <p class="radar-step-sub">Wählen Sie aus der Liste oder geben Sie den Namen Ihres Systems ein.</p>
+        <div class="radar-search-wrap">
+          <input type="text" id="r-input" list="r-bms"
+                 placeholder="z. B. Softgarden, Personio, SAP SuccessFactors …"
+                 autocomplete="off" aria-label="Bewerbermanagementsystem">
+          <datalist id="r-bms"></datalist>
+        </div>
+        <button class="btn-radar" id="r-btn1" disabled>Weiter zu den Modulen →</button>
+        <p class="radar-hint">System nicht in der Liste? Einfach eingeben – wir erweitern unsere Datenbank laufend.</p>
+      </div>
+
+      <!-- Schritt 2: Module -->
+      <div class="radar-step r-hidden" id="rs2">
+        <h3>Welche KI-Funktionen sind in Ihrem System aktiviert?</h3>
+        <p class="radar-step-sub">Auch buchen oder vorhanden reicht – aktive Nutzung ist nicht Voraussetzung für die Betreiberpflicht.</p>
+        <div class="radar-modules" id="r-mods"></div>
+        <div class="radar-nav">
+          <button class="btn-ghost-sm" id="r-back1">← Zurück</button>
+          <button class="btn-radar" id="r-btn2">Ergebnis anzeigen →</button>
+        </div>
+      </div>
+
+      <!-- Schritt 3: Ergebnis -->
+      <div class="radar-step r-hidden" id="rs3"></div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ══ CTA ════════════════════════════════════════════ -->
 <section class="cta-section" id="kontakt">
   <h2>Bereit für 15 Minuten Klarheit?</h2>
@@ -638,9 +838,10 @@ footer a:hover { color: var(--teal); }
 </main>
 
 <footer>
+  <img src="assets/logo-ohne-text.png" alt="GRAIMS" class="footer-logo">
   <span>© 2026 GRAIMS</span>
-  <a href="impressum.html">Impressum</a>
-  <a href="datenschutzerklaerung.html">Datenschutz</a>
+  <a href="https://ki-strategie.co/impressum" target="_blank" rel="noopener">Impressum</a>
+  <a href="https://ki-strategie.co/datenschutzerklaerung" target="_blank" rel="noopener">Datenschutz</a>
 </footer>
 
 <script>
@@ -665,6 +866,163 @@ footer a:hover { color: var(--teal); }
   document.querySelectorAll('img').forEach(img => {
     if (!img.hasAttribute('loading') && !img.hasAttribute('fetchpriority')) img.loading = 'lazy';
   });
+
+  // ── KI-Radar ──────────────────────────────────────
+  (function () {
+    const BMS = [
+      'Softgarden','d.vinci','Personio','Rexx Systems','Haufe Umantis',
+      'onlyfy by XING','Concludis','Talentry','Connectoor','HR4YOU',
+      'HRworks','JOIN','Bite Recruiting','Kenjo','MHM HR',
+      'P&I LOGA Recruiting','ATOSS','Perbit Software','instaffo',
+      'BewerberMaschine','Sage HR',
+      'SAP SuccessFactors','Workday Recruiting','SmartRecruiters',
+      'Greenhouse','Lever','iCIMS','Oracle Taleo','IBM Kenexa / BrassRing',
+      'Avature','Beamery','Eightfold AI','Phenom People','Paradox (Olivia)',
+      'Cornerstone OnDemand','Talentsoft (Cegid)','UKG Pro','Ceridian Dayforce',
+      'ADP Workforce Now','Oracle HCM Cloud',
+      'BambooHR','HiBob','Zoho Recruit','Teamtailor','Recruitee',
+      'Pinpoint ATS','Breezy HR','JazzHR','Jobvite','PageUp',
+      'Rippling','Factorial HR',
+      'HireVue','Harvar','Modern Hire','SparkHire','Willo',
+      'cut-e (Aon)','SHL TalentCentral','Talent Q (Korn Ferry)',
+      'Predictive Index','AssessFirst','Mercer Mettl','TestGorilla',
+      'Criteria Corp','Codility','HackerRank',
+      'Bullhorn ATS','ClearCompany','TalentReef','JobAdder',
+      'PeopleSoft Recruiting','Meta4 PeopleNet','Lumesse TalentLink',
+      'Haufe Suite','Personio HR','Rexx HR','BITE HR','Sage People',
+      'SD Worx','Datev Personalwesen','Lexware HR','DATEV HR',
+      'Paychex Flex','Namely','Rippling HR','Gusto','Justworks',
+      'Workable','Recruitly','Greenhouse Hiring','Applied','Pinpoint',
+      'Comeet','Loxo','Crelate','Vincere','Bullhorn Staffing',
+      'Manatal','Zoho Recruit','Freshteam','Keka HR','darwinbox',
+      'GreytHR','Spine HR','sumHR','HRMantra','factoHR',
+      'Talent500','HiringThing','CATS ATS','OpenCATS','Recruiteze',
+      'Homerun','TeamTailor','Ashby','Gem','Dover',
+      'Fetcher','SeekOut','hireEZ','Entelo','TalentSonar'
+    ];
+
+    const MODS = [
+      {id:'cv',      icon:'📄', label:'CV-Parsing / Datenextraktion',     sub:'Automatisches Auslesen von Lebenslauf-Daten'},
+      {id:'match',   icon:'🎯', label:'Kandidaten-Matching / Ranking',     sub:'KI bewertet und sortiert Bewerbungen automatisch'},
+      {id:'screen',  icon:'🔍', label:'Automatisierte Vorauswahl',         sub:'KI filtert oder schlägt Kandidaten vor'},
+      {id:'chat',    icon:'💬', label:'KI-Chatbot / Bewerber-Chat',        sub:'Automatische Kommunikation mit Bewerber:innen'},
+      {id:'video',   icon:'🎥', label:'Video-Interview-Analyse',           sub:'KI analysiert Mimik, Sprache oder Tonalität'},
+      {id:'assess',  icon:'🧩', label:'KI-gestützte Assessments',         sub:'Automatische Auswertung von Tests oder Übungen'},
+      {id:'predict', icon:'📊', label:'Predictive Analytics / Prognosen',  sub:'Vorhersagen zu Eignung, Fluktuation, Leistung'},
+      {id:'source',  icon:'🔎', label:'Active Sourcing KI',                sub:'KI sucht und kontaktiert Kandidaten eigenständig'},
+      {id:'none',    icon:'❓', label:'Keine / KI-Status unbekannt',        sub:'Nicht sicher oder keine dieser Funktionen vorhanden'},
+    ];
+    const HR_IDS = ['cv','match','screen','chat','video','assess','predict','source'];
+
+    // Populate datalist
+    const dl = document.getElementById('r-bms');
+    BMS.forEach(s => { const o = document.createElement('option'); o.value = s; dl.appendChild(o); });
+
+    // Populate modules
+    const mc = document.getElementById('r-mods');
+    MODS.forEach(m => {
+      const lbl = document.createElement('label');
+      lbl.className = 'r-mod'; lbl.dataset.id = m.id;
+      lbl.innerHTML = `<input type="checkbox" value="${m.id}"><span class="r-mod-icon">${m.icon}</span><span><span class="r-mod-label">${m.label}</span><span class="r-mod-sub">${m.sub}</span></span>`;
+      lbl.addEventListener('change', () => {
+        const cb = lbl.querySelector('input');
+        lbl.classList.toggle('sel', cb.checked);
+        if (m.id === 'none' && cb.checked) {
+          mc.querySelectorAll('input').forEach(c => { if (c !== cb) { c.checked = false; c.closest('.r-mod').classList.remove('sel'); } });
+        }
+        if (m.id !== 'none' && cb.checked) {
+          const n = mc.querySelector('input[value="none"]');
+          if (n) { n.checked = false; n.closest('.r-mod').classList.remove('sel'); }
+        }
+      });
+      mc.appendChild(lbl);
+    });
+
+    const inp = document.getElementById('r-input');
+    const b1  = document.getElementById('r-btn1');
+    inp.addEventListener('input', () => { b1.disabled = inp.value.trim().length < 2; });
+    b1.addEventListener('click', () => step(2));
+    document.getElementById('r-back1').addEventListener('click', () => step(1));
+    document.getElementById('r-btn2').addEventListener('click', () => { renderResult(); step(3); });
+
+    function step(n) {
+      [1,2,3].forEach(i => {
+        document.getElementById('rs'+i).classList.toggle('r-hidden', i !== n);
+        const s = document.getElementById('rp'+i);
+        s.classList.toggle('active', i === n);
+        s.classList.toggle('done', i < n);
+      });
+      document.getElementById('rl1').classList.toggle('done', n > 1);
+      document.getElementById('rl2').classList.toggle('done', n > 2);
+    }
+
+    function renderResult() {
+      const sys = inp.value.trim() || 'Ihr System';
+      const sel = [...mc.querySelectorAll('input:checked')].map(c => c.value);
+      const hasHigh = sel.some(id => HR_IDS.includes(id));
+      const hasNone = sel.includes('none') || sel.length === 0;
+
+      let level, title, text;
+      if (hasHigh) {
+        level = 'high'; title = 'Hochrisiko – Handlungsbedarf';
+        text = 'Ihr System enthält KI-Funktionen, die nach <strong>Annex III EU AI Act als Hochrisiko</strong> eingestuft werden. Als Betreiber sind Sie ab dem <strong>2. August 2026</strong> verpflichtet, Risikoklassifizierung, Betreiberdokumentation, BR-/DS-Konzept und Art.-4-Schulungsnachweise vorzuhalten. Handeln Sie jetzt – nicht kurz vor der Frist.';
+      } else if (hasNone) {
+        level = 'unclear'; title = 'Klärungsbedarf';
+        text = 'Der KI-Status Ihres Systems ist unklar. Viele BMS enthalten KI-Funktionen, die im Hintergrund laufen und nicht auf den ersten Blick erkennbar sind. Wir klären das für Sie in 30 Minuten.';
+      } else {
+        level = 'low'; title = 'Kein akuter Hochrisiko-Bedarf';
+        text = 'Die von Ihnen genutzten Funktionen lösen nach aktuellem Stand keine Hochrisiko-Pflicht aus. Prüfen Sie regelmäßig – Anbieter erweitern KI-Funktionen oft ohne aktive Kommunikation.';
+      }
+
+      const tags = sel.filter(id => id !== 'none').map(id => MODS.find(m => m.id === id)?.label).filter(Boolean);
+      const rs3 = document.getElementById('rs3');
+      rs3.innerHTML = `
+        <div class="res-header">
+          <span class="res-badge ${level}">${level==='high'?'⚠ Hochrisiko':level==='unclear'?'? Unbekannt':'✓ Kein Hochrisiko'}</span>
+          <span class="res-system">${sys}</span>
+        </div>
+        <div class="res-title">${title}</div>
+        <div class="res-text">${text}</div>
+        ${tags.length ? '<div class="res-tags">'+tags.map(t=>`<span class="res-tag">${t}</span>`).join('')+'</div>' : ''}
+        ${level !== 'low' ? pkgs() : '<button class="btn-radar" style="margin-bottom:8px" onclick="Calendly.initPopupWidget({url:\'https://calendly.com/isabell-mader/erstgesprach\'});return false;">Kostenlosen Check buchen</button>'}
+        <span class="res-restart" onclick="window.__radarReset()">← Nochmal prüfen</span>`;
+    }
+
+    function pkgs() {
+      return `<div class="pkg-hl">Ihr nächster Schritt – wählen Sie Ihren Weg:</div>
+      <div class="pkg-grid">
+        <div class="pkg-card">
+          <div class="pk-tier">Paket A · DIY</div>
+          <div class="pk-name">Selbst umsetzen</div>
+          <div class="pk-desc">Alle Leitfäden, Vorlagen und Checklisten – Sie arbeiten alles eigenständig durch.</div>
+          <ul class="pk-list"><li>Schritt-für-Schritt-Leitfäden</li><li>Alle Dokumentationsvorlagen</li><li>Checklisten &amp; Musterkonzepte</li><li>Festpreis · keine laufenden Kosten</li></ul>
+          <button class="pk-btn" onclick="Calendly.initPopupWidget({url:'https://calendly.com/isabell-mader/erstgesprach'});return false;">Jetzt anfragen</button>
+        </div>
+        <div class="pkg-card pk-feat">
+          <span class="pk-badge">Empfohlen</span>
+          <div class="pk-tier">Paket C · Consulting</div>
+          <div class="pk-name">Mit Begleitung</div>
+          <div class="pk-desc">Wir führen Sie durch den gesamten Prozess – mit klaren Meilensteinen.</div>
+          <ul class="pk-list"><li>C1 · 20 Stunden Begleitung</li><li>C2 · 40 Stunden Begleitung</li><li>Review aller Dokumente</li><li>BR- &amp; DS-Interface</li><li>Monatlicher Retainer möglich</li></ul>
+          <button class="pk-btn" onclick="Calendly.initPopupWidget({url:'https://calendly.com/isabell-mader/erstgesprach'});return false;">Beratungsgespräch buchen</button>
+        </div>
+        <div class="pkg-card">
+          <div class="pk-tier">Paket B · Full Service</div>
+          <div class="pk-name">Audit Ready</div>
+          <div class="pk-desc">Unsere Experten erarbeiten Ihr vollständiges AIMS nach ISO 42001 – übergabefertig.</div>
+          <ul class="pk-list"><li>Vollständiges AIMS nach ISO 42001</li><li>Alle Betreiberdokumente</li><li>Art.-4-Schulungsnachweise</li><li>Audit-Readiness-Check</li><li>Festpreis · Meilensteinzahlung</li></ul>
+          <button class="pk-btn" onclick="Calendly.initPopupWidget({url:'https://calendly.com/isabell-mader/erstgesprach'});return false;">Jetzt anfragen</button>
+        </div>
+      </div>`;
+    }
+
+    window.__radarReset = function() {
+      inp.value = ''; b1.disabled = true;
+      mc.querySelectorAll('input').forEach(c => { c.checked = false; c.closest('.r-mod').classList.remove('sel'); });
+      document.getElementById('rs3').innerHTML = '';
+      step(1);
+    };
+  })();
 </script>
 
 <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
