@@ -18,12 +18,11 @@
 <link rel="manifest" href="assets/favicons/site.webmanifest">
 <meta name="theme-color" content="#0A2044">
 
-<!-- Calendly -->
-<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-
 <!-- Selbst gehostete Schriften (kein Google-Tracking) -->
 <link rel="preload" href="assets/fonts/montserrat-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+<!-- LCP: Hero-Hintergrund früh laden (CSS-Background wird sonst spät entdeckt) -->
+<link rel="preload" href="assets/hero-bg.webp" as="image" fetchpriority="high">
 
 <style>
 /* ── FONTS (self-hosted) ───────────────────────────── */
@@ -306,6 +305,7 @@ h1, h2, h3, h4,
 
 .btn-radar {
   background: var(--teal); color: #fff;
+  display: inline-block; text-decoration: none; text-align: center;
   padding: 12px 30px; border-radius: var(--radius-md);
   font-weight: 700; font-size: .92rem; border: none;
   cursor: pointer; font-family: var(--font-head);
@@ -596,8 +596,8 @@ footer a:hover { color: var(--teal); }
 <!-- ══ NAV ══════════════════════════════════════════ -->
 <nav class="nav">
   <a class="nav-brand" href="#">
-    <img src="assets/logo-ohne-text.png" alt="GRAIMS Logo"
-         height="48" fetchpriority="high"
+    <img src="assets/logo-nav.webp" alt="GRAIMS Logo"
+         width="49" height="48" fetchpriority="high"
          onerror="this.style.display='none'">
     <div class="nav-brand-text">
       <span class="nav-brand-name">GRAIMS</span>
@@ -605,7 +605,7 @@ footer a:hover { color: var(--teal); }
     </div>
   </a>
   <div class="nav-right">
-    <button class="nav-cta" onclick="Calendly.initPopupWidget({url:'https://calendly.com/isabell-mader/erstgesprach'});return false;">Termin vereinbaren</button>
+    <a class="nav-cta" href="https://calendar.proton.me/bookings#b863qgV1h2SO11fmM7GETOdNd8HekibuNwlpjrHAjyA=" target="_blank" rel="noopener">Termin vereinbaren</a>
   </div>
 </nav>
 
@@ -642,7 +642,7 @@ footer a:hover { color: var(--teal); }
       </div>
       <a class="trust-link" href="#radar">KI- &amp; Compliance-Radar: Jetzt Ihr System prüfen →</a>
       <div class="cta-group">
-        <button class="btn-primary" onclick="Calendly.initPopupWidget({url:'https://calendly.com/isabell-mader/erstgesprach'});return false;">Kostenloses Erstgespräch</button>
+        <a class="btn-primary" href="https://calendar.proton.me/bookings#b863qgV1h2SO11fmM7GETOdNd8HekibuNwlpjrHAjyA=" target="_blank" rel="noopener">Kostenloses Erstgespräch</a>
         <a class="btn-ghost" href="#loesung">Was wir liefern ↓</a>
       </div>
     </div>
@@ -849,16 +849,16 @@ footer a:hover { color: var(--teal); }
 <section class="cta-section" id="kontakt">
   <h2>Bereit für 15 Minuten Klarheit?</h2>
   <p>Wir sagen Ihnen ehrlich, ob und wie wir helfen können. Kein Verkaufsgespräch – sondern eine erste echte Einschätzung.</p>
-  <button class="btn-primary" onclick="Calendly.initPopupWidget({url:'https://calendly.com/isabell-mader/erstgesprach'});return false;">
+  <a class="btn-primary" href="https://calendar.proton.me/bookings#b863qgV1h2SO11fmM7GETOdNd8HekibuNwlpjrHAjyA=" target="_blank" rel="noopener">
     Termin vereinbaren
-  </button>
+  </a>
   <span class="cta-note">Oder schreiben Sie uns: kontakt@graims.de</span>
 </section>
 
 </main>
 
 <footer>
-  <img src="assets/logo-ohne-text.png" alt="GRAIMS" class="footer-logo">
+  <img src="assets/logo-nav.webp" alt="GRAIMS" class="footer-logo" width="33" height="32">
   <span>© <span id="year">2026</span> GRAIMS</span>
   <a href="https://ki-strategie.co/impressum" target="_blank" rel="noopener">Impressum</a>
   <a href="https://ki-strategie.co/datenschutzerklaerung" target="_blank" rel="noopener">Datenschutz</a>
@@ -906,6 +906,8 @@ footer a:hover { color: var(--teal); }
       'Homerun','TeamTailor','Ashby','Gem','Dover',
       'Fetcher','SeekOut','hireEZ','Entelo','TalentSonar'
     ];
+
+    const BOOKING = 'https://calendar.proton.me/bookings#b863qgV1h2SO11fmM7GETOdNd8HekibuNwlpjrHAjyA=';
 
     // Heroicons (MIT) als Inline-SVG, Farbe via currentColor
     const ICO = d => '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="' + d + '"/></svg>';
@@ -993,7 +995,7 @@ footer a:hover { color: var(--teal); }
         <div class="res-title">${title}</div>
         <div class="res-text">${text}</div>
         ${tags.length ? '<div class="res-tags">'+tags.map(t=>`<span class="res-tag">${t}</span>`).join('')+'</div>' : ''}
-        ${level !== 'low' ? pkgs() : '<button class="btn-radar" style="margin-bottom:8px" onclick="Calendly.initPopupWidget({url:\'https://calendly.com/isabell-mader/erstgesprach\'});return false;">Kostenlosen Check buchen</button>'}
+        ${level !== 'low' ? pkgs() : '<a class="btn-radar" style="margin-bottom:8px" href="' + BOOKING + '" target="_blank" rel="noopener">Kostenlosen Check buchen</a>'}
         <span class="res-restart" onclick="window.__radarReset()">← Nochmal prüfen</span>`;
     }
 
@@ -1005,7 +1007,7 @@ footer a:hover { color: var(--teal); }
           <div class="pk-name">Selbst umsetzen</div>
           <div class="pk-desc">Alle Leitfäden, Vorlagen und Checklisten – Sie arbeiten alles eigenständig durch.</div>
           <ul class="pk-list"><li>Schritt-für-Schritt-Leitfäden</li><li>Alle Dokumentationsvorlagen</li><li>Checklisten &amp; Musterkonzepte</li><li>Festpreis · keine laufenden Kosten</li></ul>
-          <button class="pk-btn" onclick="Calendly.initPopupWidget({url:'https://calendly.com/isabell-mader/erstgesprach'});return false;">Jetzt anfragen</button>
+          <a class="pk-btn" href="${BOOKING}" target="_blank" rel="noopener">Jetzt anfragen</a>
         </div>
         <div class="pkg-card pk-feat">
           <span class="pk-badge">Empfohlen</span>
@@ -1013,14 +1015,14 @@ footer a:hover { color: var(--teal); }
           <div class="pk-name">Mit Begleitung</div>
           <div class="pk-desc">Wir führen Sie durch den gesamten Prozess – mit klaren Meilensteinen.</div>
           <ul class="pk-list"><li>C1 · 20 Stunden Begleitung</li><li>C2 · 40 Stunden Begleitung</li><li>Review aller Dokumente</li><li>BR- &amp; DS-Interface</li><li>Monatlicher Retainer möglich</li></ul>
-          <button class="pk-btn" onclick="Calendly.initPopupWidget({url:'https://calendly.com/isabell-mader/erstgesprach'});return false;">Beratungsgespräch buchen</button>
+          <a class="pk-btn" href="${BOOKING}" target="_blank" rel="noopener">Beratungsgespräch buchen</a>
         </div>
         <div class="pkg-card">
           <div class="pk-tier">Paket B · Full Service</div>
           <div class="pk-name">Audit Ready</div>
           <div class="pk-desc">Unsere Experten erarbeiten Ihr vollständiges AIMS nach ISO 42001 – übergabefertig.</div>
           <ul class="pk-list"><li>Vollständiges AIMS nach ISO 42001</li><li>Alle Betreiberdokumente</li><li>Art.-4-Schulungsnachweise</li><li>Audit-Readiness-Check</li><li>Festpreis · Meilensteinzahlung</li></ul>
-          <button class="pk-btn" onclick="Calendly.initPopupWidget({url:'https://calendly.com/isabell-mader/erstgesprach'});return false;">Jetzt anfragen</button>
+          <a class="pk-btn" href="${BOOKING}" target="_blank" rel="noopener">Jetzt anfragen</a>
         </div>
       </div>`;
     }
@@ -1034,6 +1036,5 @@ footer a:hover { color: var(--teal); }
   })();
 </script>
 
-<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 </body>
 </html>
